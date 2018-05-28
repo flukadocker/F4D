@@ -1,7 +1,20 @@
 #!/bin/bash
 
-chmod 755 ./common/version_current.sh
-./common/version_current.sh
+docker create --name fluka_info -t horvathd84/f4d_baseimage bash
+docker start fluka_info
+docker exec fluka_info mkdir /common
+docker cp ./common/version_current.sh fluka_info:/
+docker cp ./common/fluka fluka_info:/common/
+docker cp ./common/flukar fluka_info:/common/
+docker cp ./common/flair fluka_info:/common/
+docker exec fluka_info chmod 755 /version_current.sh
+docker exec fluka_info /version_current.sh
+docker cp fluka_info:/common/update ./common/
+docker cp fluka_info:/common/fluka ./common/
+docker cp fluka_info:/common/flukar ./common/
+docker cp fluka_info:/common/flair ./common/
+docker stop fluka_info
+docker rm fluka_info
 
 fluka_version=$(< ./common/flukar)
 fluka_version_short=$(< ./common/fluka)
@@ -13,7 +26,7 @@ update=$(< ./common/update)
 docker build -f ./common/flair.dockerfile --build-arg flair_version=$flair_version -t f4d_flair .
 
 if [ ! $? -eq 0 ]; then
-    echo "ERROR: Failed to install flair. Check your internet connection and/or try again later."
+    echo "ERROR: Failed to install flair. Check your internet connection and/or see the troubleshooting part of the user guide.."
     docker rm $('docker ps -ql')
     docker image prune -f
     exit 1
