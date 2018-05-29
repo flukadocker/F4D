@@ -67,7 +67,7 @@ Create the directory C:\Users\docker (mandatory!) and execute ```install_win.bat
 
 ## The installation process
 
-All three install scripts will prompt for your FLUKA credentials (fuid-xxxx and password), download the latest public FLUKA release and install it in a Fedora 27 based Docker container.
+Both install scripts will prompt for your FLUKA credentials (fuid-xxxx and password), download the latest public FLUKA release and install it in a Fedora 27 based Docker container.
 
 The installation might require a bit of time - from 1 to 10 minutes - depending on the speed of your internet connection.
 
