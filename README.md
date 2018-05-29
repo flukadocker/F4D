@@ -1,5 +1,4 @@
-# F4D
-Fluka for Docker
+# F4D (Fluka for Docker)
 
 V. Boccone, A. Fontana, D. Horvath
 
