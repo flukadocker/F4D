@@ -213,6 +213,10 @@ to enable the running the X11 forwarding.
 
 ### Using the container
 Once in the docker container shell you could use the shell as if you would on a normal linux system.
+
+A shared folder between the host OS and the Docker container is defined as /docker_work 
+and mounted in the subdirectory docker_work in the user-defined directory (e.g. C:\docker or C:\Users\docker).
+
 You can try, for example, to run Fluka by:
 ```
 [flukauser@linuxkit-025000000001 ~]$ cd /docker_work
