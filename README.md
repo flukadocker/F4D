@@ -2,6 +2,10 @@
 
 V. Boccone, A. Fontana, D. Horvath
 
+These scripts allow to install and run Fluka and Flair inside a Docker container in any OS 
+where Docker can be installed. The idea is derived by the scripts developed and maintained by V. Boccone 
+at https://github.com/drbokko/fedora_27-fluka
+
 # Installing Docker 
 You can install Docker in the host OS by following the instructions 
 on the Docker website: these are available for the most common Linux 
