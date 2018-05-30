@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker create --name fluka_info -t horvathd84/f4d_baseimage bash
+docker create --name fluka_info -t flukadocker/f4d_baseimage bash
 docker start fluka_info
 docker exec fluka_info mkdir /common
 docker cp ./common/version_current.sh fluka_info:/
