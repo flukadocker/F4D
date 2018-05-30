@@ -283,8 +283,6 @@ In case of an error during the update you can try the following troubleshooting 
 docker pull flukadocker/f4d_baseimage
 ```
 
-Download the latest 
-
 # More information on Docker in general
 
 ## Working with containers
