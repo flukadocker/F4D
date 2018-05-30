@@ -266,6 +266,25 @@ On Windows machines run only one job at a time. Parallel jobs might cause errors
 
 Use the ```exit``` command in the container's shell to stop it.
 
+# Updating the Fluka docker image
+
+If a new version of Fluka or Flair released, you can update your Fluka docker image by running the intallation script again. It will automatically download and install the updated versions.
+
+## Errors during update
+
+In case of an error during the update you can try the following troubleshooting steps:
+
+1. Check your internet connection, and see if [fluka.org](http://fluka.org) can be loaded.
+
+2. Download the latest scripts.
+
+3. Update the base image manually by executing the following command:
+```
+docker pull flukadocker/f4d_baseimage
+```
+
+Download the latest 
+
 # More information on Docker in general
 
 ## Working with containers
