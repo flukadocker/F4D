@@ -59,7 +59,7 @@ The downloaded scripts can be placed anywhere in your home directory.
 
 ### Windows 10 Pro, Enterprise, and Education
 
-Create a folder on the ```C:\``` drive (e.g. ```C:\Docker```) and copy every folder and file from the zip file (repository) there.
+Create a folder on the ```C:\``` drive (e.g. ```C:\docker```) and copy every folder and file from the zip file (repository) there.
 
 ### Windows 10 Home (and possibly older Windows versions)
 
@@ -212,7 +212,7 @@ xhost +
 
 ### Windows 10 Pro, Enterprise, and Education
 
-Change directory to where you have installed the Docker scripts (e.g. ```C:\Docker```) and execute the script ```run_win10_professional.bat```: this script will start the Docker container with FLUKA and FLAIR installed.
+Change directory to where you have installed the Docker scripts (e.g. ```C:\docker```) and execute the script ```run_win10_professional.bat```: this script will start the Docker container with FLUKA and FLAIR installed.
 
 Allow sharing the ```C:\``` drive, if Docker asks.
 
@@ -227,7 +227,7 @@ Alternatively you can execute it in a Windows prompt terminal or by double-click
 
 Once in the docker container shell you could use the shell as if you would on a normal linux system.
 
-A shared folder between the host OS and the Docker container is defined as \docker_work and mounted in the subdirectory \docker_work in the user-defined directory (e.g. C:\docker or C:\Users\docker).
+A shared folder between the host OS and the Docker container is defined as ```/docker_work``` and mounted in the subdirectory ```.\docker_work``` in the user-defined directory (e.g. ```C:\docker``` or ```C:\Users\docker```).
 
 You can try, for example, to run Fluka by:
 ```
@@ -257,6 +257,8 @@ End of FLUKA run
 ```
 
 or also running Flair.
+
+> Note: Always work in the ```/docker_work``` directory. While the home folder ```~``` is saved between sessions, it is not shared with the host OS. Other folders will reset each time the Fluka cointainer is started.
 
 ### Limitation of parallel jobs
 
