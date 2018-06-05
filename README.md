@@ -194,19 +194,19 @@ During this phase the script will:
 - perform the necessary Fluka installation steps;
 - create a *fluka* default user in the image.
 
-# Your first Fluka container 
+# Your first Fluka container
 
 ## Creating a container
 
 ### OS X, Linux
 
-It is possible to get a shell terminal to container and to pass trough the X11 connection along with some local folder. 
+It is possible to get a shell terminal to container and to pass trough the X11 connection along with some local folder.
 
 Execute from a terminal ```./run_linux.sh```: this script will start the Docker container with FLUKA and FLAIR installed.
 
 Note: Depending on your Xserver configuration you might need to run:
 ```
-xhost + 
+xhost +
 ```
  on the host OS to enable the running the X11 forwarding.
 
@@ -258,7 +258,7 @@ End of FLUKA run
 
 or also running Flair.
 
-> Note: Always work in the ```/docker_work``` directory. While the home folder ```~``` is saved between sessions, it is not shared with the host OS. Other folders will reset each time the Fluka cointainer is started.
+> Note: Always work in the ```/docker_work``` directory. While the home folder ```~``` is saved between sessions, it is not shared with the host OS. Other folders will reset each time the Fluka container is started.
 
 ### Limitation of parallel jobs
 
@@ -270,7 +270,7 @@ Use the ```exit``` command in the container's shell to stop it.
 
 # Updating the Fluka docker image
 
-If a new version of Fluka or Flair released, you can update your Fluka docker image by running the intallation script again. It will automatically download and install the updated versions.
+If a new version of Fluka or Flair released, you can update your Fluka docker image by running the installation script again. It will automatically download and install the updated versions.
 
 ## Errors during update
 
@@ -278,18 +278,15 @@ In case of an error during the update you can try the following troubleshooting 
 
 1. Check your internet connection, and see if [fluka.org](http://fluka.org) can be loaded.
 
-2. Download the latest scripts.
+3. Delete the ```fluka*.tar.gz``` file in the scripts folder.
 
-3. Update the base image manually by executing the following command:
-```
-docker pull flukadocker/f4d_baseimage
-```
+3. Download the latest scripts.
 
 # More information on Docker in general
 
 ## Working with containers
 
-Working with containers might not be so easy if are not used to the Command Line Interface in Linux. [Digital Ocean provides a nice primer](https://www.digitalocean.com/community/tutorials/working-with-docker-containers) 
+Working with containers might not be so easy if are not used to the Command Line Interface in Linux. [Digital Ocean provides a nice primer](https://www.digitalocean.com/community/tutorials/working-with-docker-containers)
 
 Each container instance is identified by an unique CONTAINER ID code and an unique name. If no name is specified during the container creation docker will generate a random name.
 

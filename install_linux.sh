@@ -1,5 +1,7 @@
 #!/bin/bash
 
+docker pull flukadocker/f4d_baseimage
+
 docker create --name fluka_info -t flukadocker/f4d_baseimage bash
 docker start fluka_info
 docker exec fluka_info mkdir /common
