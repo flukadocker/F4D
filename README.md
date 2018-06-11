@@ -194,6 +194,10 @@ During this phase the script will:
 - perform the necessary Fluka installation steps;
 - create a *fluka* default user in the image.
 
+## Custom packages
+
+It is possible to install additional fedora packages. Uncomment and edit the appropriate lines in ```./common/flair.docker.sh```. Multiple packages can be listed, the package names should be separated with SPACE.
+
 # Your first Fluka container
 
 ## Creating a container
