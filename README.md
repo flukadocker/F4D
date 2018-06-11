@@ -196,7 +196,7 @@ During this phase the script will:
 
 ## Custom packages
 
-It is possible to install additional fedora packages. Uncomment and edit the appropriate lines in ```./common/flair.docker.sh```. Multiple packages can be listed, the package names should be separated with SPACE.
+It is possible to install additional fedora packages. Uncomment and edit the appropriate lines in ```./common/flair.dockerfile```. Multiple packages can be listed, the package names should be separated with SPACE.
 
 # Your first Fluka container
 
