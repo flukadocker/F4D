@@ -20,8 +20,9 @@ Windows 10 Home does not enable hyper-V, which is required for Docker Community 
 
 ## Post installation steps for both Windows 10 versions
 
-- Allow Docker through the firewall
-- Start Xming (http://www.straightrunning.com/XmingNotes/) without access control. Use the XLaunch wizard for easy configuration.
+Install Public Domain Release version of Xming (http://www.straightrunning.com/XmingNotes/).
+
+Allow Docker and Xming through the firewall.
 
 ## Additional info for Linux
 
@@ -31,6 +32,34 @@ sudo usermod -aG docker $USER
 ```
 
 In this way, all docker commands can be issued as $USER.
+
+## Testing Docker installation
+
+To check if the installation of Docker was successful, run the following command: ```docker run --rm hello-world```
+
+If everything is correct, you should see following message:
+```
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/engine/userguide/
+```
 
 # Generating your personal docker image with Fluka
 
@@ -77,21 +106,26 @@ Execute in a Windows prompt terminal or by double-clicking on it the script ```i
 
 ### Windows 10 Home (and possibly older Windows versions)
 
-Start as Administrator a Docker Quickstart Terminal and close it when it is ready: this activates Docker in Windows 10 Home Edition.
+Start as Administrator a Docker Quickstart Terminal and execute from the directory ```/c/Users/docker``` the script ```install_win10.bat```. This script will install the necessary start the Docker container with Fluka and Flair installed and ready to be used.
 
-Execute in a Windows prompt terminal or by double-clicking on it the script ```install_win.bat```.
+Alternatively you can start the Docker Quickstart Terminal as Administrator and execute the install script in a Windows prompt terminal also started as Administrator.
 
 ## The installation process
 
-Both install scripts will prompt for your FLUKA credentials (fuid-xxxx and password), download the latest public FLUKA release and install it in a Fedora 27 based Docker container.
+Both install scripts will prompt for your Fluka credentials (fuid-xxxx and password), download the latest public Fluka release and install it in a Fedora based Docker container.
 
 The installation might require a bit of time - from 1 to 10 minutes - depending on the speed of your internet connection.
 
 The typical output of these steps in all systems is as follows:
 ```
-e568d8b2223ec4ca82c1e61582aed6771459c70eb9dc9ffc033633cac40b5ccc
+Using default tag: latest
+latest: Pulling from flukadocker/f4d_baseimage
+Digest: sha256:a3817003a314970e2049f6490617097e9c1b8a577ae516601567f2683514cb73
+Status: Image is up to date for flukadocker/f4d_baseimage:latest
+Total reclaimed space: 0B
+162358d0674281e5c4adb1032c83730ccba335ff1f5c53952eabdeb83b47eabb
 fluka_info
-Checking Fluka and flair versions
+Checking Github, Fluka and flair versions
 Check complete
 fluka_info
 fluka_info
@@ -110,8 +144,8 @@ SECURITY WARNING: You are building a Docker image from Windows against a non-Win
 Total reclaimed space: 0B
 Downloading Fluka
 Please specify your Fluka user identification ['fuid', i.e. fuid-1234]
-fuid: fuid-2130
-Password for user 'fuid-2130':
+fuid: fuid-1234
+Password for user 'fuid-1234':
 --2018-05-29 12:46:36--  https://www.fluka.org/packages/fluka2011.2x-linux-gfor64bitAA.tar.gz
 Resolving www.fluka.org (www.fluka.org)... 193.205.78.76
 Connecting to www.fluka.org (www.fluka.org)|193.205.78.76|:443... connected.
@@ -198,6 +232,8 @@ During this phase the script will:
 
 It is possible to install additional fedora packages. Uncomment and edit the appropriate lines in ```./common/flair.dockerfile```. Multiple packages can be listed, the package names should be separated with SPACE.
 
+After editing the ```./common/flair.dockerfile```, run the installation script again to create the image with the custom packages.
+
 # Your first Fluka container
 
 ## Creating a container
@@ -206,7 +242,7 @@ It is possible to install additional fedora packages. Uncomment and edit the app
 
 It is possible to get a shell terminal to container and to pass trough the X11 connection along with some local folder.
 
-Execute from a terminal ```./run_linux.sh```: this script will start the Docker container with FLUKA and FLAIR installed.
+Execute from a terminal ```./run_linux.sh```: this script will start the Docker container with Fluka and Flair installed.
 
 Note: Depending on your Xserver configuration you might need to run:
 ```
@@ -216,16 +252,19 @@ xhost +
 
 ### Windows 10 Pro, Enterprise, and Education
 
-Change directory to where you have installed the Docker scripts (e.g. ```C:\docker```) and execute the script ```run_win10_professional.bat```: this script will start the Docker container with FLUKA and FLAIR installed.
+Use XLaunch to start Xming without access control.
+
+Change directory to where you have installed the Docker scripts (e.g. ```C:\docker```) and execute the script ```run_win10_professional.bat```: this script will start the Docker container with Fluka and Flair installed.
 
 Allow sharing the ```C:\``` drive, if Docker asks.
 
 ### Windows 10 Home (and possibly older Windows versions)
 
-Start as Administrator a Docker Quickstart Terminal and execute from the directory ```/c/Users/docker```
-```run_win10_home.bat```: this script will start the Docker container with FLUKA and FLAIR installed and ready to be used.
+Use XLaunch to start Xming without access control.
 
-Alternatively you can execute it in a Windows prompt terminal or by double-clicking it.
+Start as Administrator a Docker Quickstart Terminal and execute from the directory ```/c/Users/docker``` the script ```run_win10_home.bat```. This script will start the Docker container with Fluka and Flair installed and ready to be used.
+
+Alternatively you can execute it in a Windows prompt terminal (started as Administrator).
 
 ## Using a container
 
