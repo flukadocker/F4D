@@ -125,7 +125,7 @@ Status: Image is up to date for flukadocker/f4d_baseimage:latest
 Total reclaimed space: 0B
 162358d0674281e5c4adb1032c83730ccba335ff1f5c53952eabdeb83b47eabb
 fluka_info
-Checking Github, Fluka and flair versions
+Checking Fluka and flair versions
 Check complete
 fluka_info
 fluka_info
@@ -323,7 +323,7 @@ In case of an error during the update you can try the following troubleshooting 
 
 3. Delete the ```fluka*.tar.gz``` file in the scripts folder.
 
-3. Download the latest scripts.
+3. Delete all in you Docker directory and redownload the latest scripts.
 
 # More information on Docker in general
 

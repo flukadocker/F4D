@@ -1,35 +1,6 @@
 #!/bin/bash
 
-echo "Checking Github, Fluka and flair versions"
-
-github_installed=$(cat ./common/github)
-github_current=$(git ls-remote https://github.com/flukadocker/F4D.git | grep HEAD | awk '{ print $1 }')
-
-if [ "${github_installed}" == "1" ]; then
-  echo "Newer installer was detected at the previous run"
-  echo -n "Is the installer up to date? [y/N]: "
-  read gitanswer
-
-  if [ "${gitanswer}" == "y" ]; then
-    echo "Continuing installation"
-    github_installed="0"
-  else
-    echo "Stopping installation"
-    echo "Update every file and rerun the installer"
-    exit 1
-  fi
-fi
-
-if [ "${github_installed}" == "0" ]; then
-  github_installed=$github_current
-  echo $github_current > ./common/github
-elif [ ! "${github_installed}" == "${github_current}" ];  then
-  echo "STOP: Newer installer available"
-  echo "Download from https://github.com/flukadocker/F4D"
-  echo "Update every file and rerun the installer"
-  echo "1" > ./common/github
-  exit 1
-fi
+echo "Checking Fluka and flair versions"
 
 fluka_installed=$(cat ./common/flukar)
 

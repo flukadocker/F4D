@@ -1,28 +1,17 @@
 #!/bin/bash
 
 docker pull flukadocker/f4d_baseimage
-docker image prune -f
 
 docker create --name fluka_info -t flukadocker/f4d_baseimage bash
 docker start fluka_info
 docker exec fluka_info mkdir /common
 docker cp ./common/version_current.sh fluka_info:/
-docker cp ./common/github fluka_info:/common/
 docker cp ./common/fluka fluka_info:/common/
 docker cp ./common/flukar fluka_info:/common/
 docker cp ./common/flair fluka_info:/common/
 docker exec fluka_info chmod 755 /version_current.sh
 docker exec -it fluka_info /version_current.sh
-
-if [ ! $? -eq 0 ]; then
-    docker cp fluka_info:/common/github ./common/
-    docker stop fluka_info
-    docker rm fluka_info
-    exit 1
-fi
-
 docker cp fluka_info:/common/update ./common/
-docker cp fluka_info:/common/github ./common/
 docker cp fluka_info:/common/fluka ./common/
 docker cp fluka_info:/common/flukar ./common/
 docker cp fluka_info:/common/flair ./common/
@@ -82,4 +71,5 @@ if [ ! $? -eq 0 ]; then
     exit 1
 fi
 
+docker image prune -f
 docker image prune -f
