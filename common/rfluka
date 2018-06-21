@@ -218,6 +218,7 @@ Usage: rfluka -e <fluka executable> -N <run N> -M <final run N>
     fi
     mkdir -p ${DCKRD}
     ln -s ${DCKRD}
+    sleep 10
  else
     mkdir ${CURSUB}
  fi
