@@ -18,8 +18,6 @@ RUN useradd -u $UID -c 'Fluka User' -m -d /home/fluka -s /bin/bash fluka && \
     cd /usr/local/fluka; make && \
     chown -R fluka:fluka /usr/local/fluka && \
     rm -rf /tmp/fluka*.tar.gz && \
-    cp /usr/local/fluka/flukahp / && \
-    rm -rf /flukahp && \
     mkdir /docker_work && \
     chown -R fluka:fluka /docker_work && \
     chmod 755 /etc/profile.d/version_installed.sh
