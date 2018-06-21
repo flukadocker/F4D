@@ -55,6 +55,7 @@ Usage: rfluka -e <fluka executable> -N <run N> -M <final run N>
  NUM=0
  MAX=5
  
+ # define a temporary directory name for Docker use
  FLUTMP="/fluka_tmp"
 
  # loop until all arguments are processed
@@ -214,13 +215,18 @@ Usage: rfluka -e <fluka executable> -N <run N> -M <final run N>
  if [ -n "$FLDCKR" ] ; then
     ${ECHOE} "\nUsing Docker specific settings"
     DCKRD=${HOME}${FLUTMP}${CURDIR}/${CURSUB}
+    
     # create running sub-directory
     if [ -d ${DCKRD} ] ; then
         rm -rf ${DCKRD}
     fi
     mkdir -p ${DCKRD}
     ln -s ${DCKRD}
-    sleep 10
+    
+    # wait until the symlink is created
+    while [ ! -L ${CURSUB} ] ; do
+        sleep 1
+    done
  else
     mkdir ${CURSUB}
  fi
@@ -385,7 +391,7 @@ XNLOANFIL="e6r1nds3.fyi jef2.fyi  jendl3.fyi"
 # check if FLUKA DOCKER variable is set
  if [ -n "$FLDCKR" ] ; then
     rmdir ${DCKRD}
-    rm ${CURSUB}
+    \rm ${CURSUB}
  else
     rmdir ${CURSUB}
  fi
