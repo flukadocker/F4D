@@ -31,4 +31,4 @@ USER fluka
 ENV LOGNAME=fluka
 ENV USER=fluka
 ENV HOME /home/fluka
-WORKDIR /home/fluka
+WORKDIR /docker_work
