@@ -28,7 +28,7 @@ SET /P update=< .\common\update
 docker build -f .\common\flair.dockerfile --build-arg flair_version=%flair_version% -t f4d_flair .
 
 IF NOT %errorlevel% == 0 (
-    ECHO ERROR: Failed to install flair. Check your internet connection and/or try again later.
+    ECHO ERROR: Failed to install flair. Check your internet connection and/or see the troubleshooting part of the user guide.
     FOR /F "tokens=*" %%a in ('docker ps -ql') do SET contid=%%a
     docker rm !contid!
     docker image prune -f
@@ -58,7 +58,7 @@ IF NOT EXIST %fluka_package% (
 )
 
 IF NOT EXIST %fluka_package% (
-    ECHO Error downloading Fluka package [%fluka_package%]
+    ECHO ERROR: Failed to download Fluka package [%fluka_package%]
     EXIT /B 1
 )
 

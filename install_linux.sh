@@ -28,7 +28,7 @@ update=$(< ./common/update)
 docker build -f ./common/flair.dockerfile --build-arg flair_version=$flair_version -t f4d_flair .
 
 if [ ! $? -eq 0 ]; then
-    echo "ERROR: Failed to install flair. Check your internet connection and/or see the troubleshooting part of the user guide.."
+    echo "ERROR: Failed to install flair. Check your internet connection and/or see the troubleshooting part of the user guide."
     docker rm $('docker ps -ql')
     docker image prune -f
     exit 1
@@ -58,7 +58,7 @@ if [ ! -e ${fluka_package} ]; then
 fi
 
 if [ ! -e ${fluka_package} ]; then
-  echo "Error downloading Fluka package [${fluka_package}]"
+  echo "ERROR: Failed to download Fluka package [${fluka_package}]"
   exit 1
 fi
 
