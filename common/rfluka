@@ -54,6 +54,8 @@ Usage: rfluka -e <fluka executable> -N <run N> -M <final run N>
  INPF=""
  NUM=0
  MAX=5
+ 
+ FLUTMP="/fluka_tmp"
 
  # loop until all arguments are processed
  while [ $# -gt 0 ]; do
@@ -211,7 +213,7 @@ Usage: rfluka -e <fluka executable> -N <run N> -M <final run N>
 # check if FLUKA DOCKER variable is set
  if [ -n "$FLDCKR" ] ; then
     ${ECHOE} "\nUsing Docker specific settings"
-    DCKRD=${HOME}${CURDIR}/${CURSUB}
+    DCKRD=${HOME}${FLUTMP}${CURDIR}/${CURSUB}
     # create running sub-directory
     if [ -d ${DCKRD} ] ; then
         rm -rf ${DCKRD}
