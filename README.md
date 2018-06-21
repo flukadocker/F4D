@@ -16,7 +16,7 @@ Install Docker Community Edition: https://www.docker.com/community-edition
 
 Install Docker Toolbox: https://docs.docker.com/toolbox/overview/
 
-Windows 10 Home does not enable hyper-V, which is required for Docker Community Edition. Docker Toolbox provides a workaround. This is not optimal for performance, but it allows to run FLUKA also on Windows 10 Home.
+Windows 10 Home does not enable Hyper-V, which is required for Docker Community Edition. Docker Toolbox provides a workaround. This is not optimal for performance, but it allows to run FLUKA also on Windows 10 Home.
 
 ## Post installation steps for both Windows 10 versions
 
@@ -230,9 +230,9 @@ During this phase the script will:
 
 ## Custom packages
 
-It is possible to install additional fedora packages. Uncomment and edit the appropriate lines in ```./common/flair.dockerfile```. Multiple packages can be listed, the package names should be separated with SPACE.
+It is possible to install additional fedora packages. Uncomment and edit the appropriate lines in ```./common/flair.dockerfile```. Multiple packages can be listed, the package names should be separated with ```SPACE```.
 
-After editing the ```./common/flair.dockerfile```, run the installation script again to create the image with the custom packages.
+After editing the dockerfile, run the installation script again to create the image with the custom packages.
 
 # Your first Fluka container
 
@@ -270,13 +270,12 @@ Alternatively you can execute it in a Windows prompt terminal (started as Admini
 
 Once in the docker container shell you could use the shell as if you would on a normal linux system.
 
-A shared folder between the host OS and the Docker container is defined as ```/docker_work``` and mounted in the subdirectory ```.\docker_work``` in the user-defined directory (e.g. ```C:\docker``` or ```C:\Users\docker```).
+The container automatically starts in the ```/docker_work``` folder. This folder is shared folder between the host OS and the Docker container. On the host OS it's located in the user-defined directory (e.g. ```C:\docker``` or ```C:\Users\docker```) as a subfolder.
 
 You can try, for example, to run Fluka by:
 ```
-[flukauser@linuxkit-025000000001 ~]$ cd /docker_work
-[flukauser@linuxkit-025000000001 ~]$ mkdir test
-[flukauser@linuxkit-025000000001 ~]$ cd test
+[flukauser@linuxkit-025000000001 docker_work]$ mkdir test
+[flukauser@linuxkit-025000000001 docker_work]$ cd test
 [flukauser@linuxkit-025000000001 test]$ cp $FLUPRO/example.inp .
 [flukauser@linuxkit-025000000001 test]$ $FLUPRO/flutil/rfluka -N0 -M1 example
 $TARGET_MACHINE = Linux
@@ -299,13 +298,13 @@ Saving additional files generated
 End of FLUKA run
 ```
 
-or also running Flair.
+or also running Flair with the command ```flair```.
 
-> Note: Always work in the ```/docker_work``` directory. While the home folder ```~``` is saved between sessions, it is not shared with the host OS. Other folders will reset each time the Fluka container is started.
+Always work in the ```/docker_work``` directory. While the home folder ```~``` is saved between sessions, it is not shared with the host OS.
 
 ### Limitation of parallel jobs
 
-On Windows machines run only one job at a time. Parallel jobs might cause errors.
+On Windows by default Docker is configured to have limited CPU cores and memory available to the containers. Only run one simulation job at a time. Parallel jobs might cause errors or hang the container.
 
 ## Stopping a container
 
