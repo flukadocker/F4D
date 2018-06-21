@@ -62,7 +62,7 @@ IF NOT EXIST %fluka_package% (
     EXIT /B 1
 )
 
-docker build --no-cache -f .\common\fluka.dockerfile --build-arg fluka_package=%fluka_package% -t f4d_fluka .
+docker build --no-cache -f .\common\fluka.dockerfile --build-arg fluka_package=%fluka_package% --build-arg fluka_version=%fluka_version% -t f4d_fluka .
 
 IF NOT %errorlevel% == 0 (
     ECHO ERROR: Failed to install Fluka. See the troubleshooting part of the user guide.

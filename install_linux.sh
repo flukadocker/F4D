@@ -62,7 +62,7 @@ if [ ! -e ${fluka_package} ]; then
   exit 1
 fi
 
-docker build --no-cache -f ./common/fluka.dockerfile --build-arg fluka_package=$fluka_package --build-arg UID=$UID -t f4d_fluka .
+docker build --no-cache -f ./common/fluka.dockerfile --build-arg fluka_package=$fluka_package --build-arg fluka_version=$fluka_version --build-arg UID=$UID -t f4d_fluka .
 
 if [ ! $? -eq 0 ]; then
     echo "ERROR: Failed to install Fluka. See the troubleshooting part of the user guide."
