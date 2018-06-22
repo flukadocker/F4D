@@ -9,8 +9,17 @@ docker cp ./common/version_current.sh fluka_info:/
 docker cp ./common/fluka fluka_info:/common/
 docker cp ./common/flukar fluka_info:/common/
 docker cp ./common/flair fluka_info:/common/
+docker cp ./common/version.tag fluka_info:/common/
 docker exec fluka_info chmod 755 /version_current.sh
 docker exec -it fluka_info /version_current.sh
+
+IF NOT %errorlevel% == 0 (
+    ECHO ERROR: Newer versions of the install and/or run scripts are available. Update them to continue.
+    docker stop fluka_info
+    docker rm fluka_info
+    EXIT /B 1
+)
+
 docker cp fluka_info:/common/update ./common/
 docker cp fluka_info:/common/fluka ./common/
 docker cp fluka_info:/common/flukar ./common/
