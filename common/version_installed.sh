@@ -1,6 +1,14 @@
 #!/bin/bash
 
+echo ""
+echo "Fluka for Docker"
+echo ""
+cat /etc/profile.d/disclaimer
+echo ""
+
+echo ""
 cat /etc/motd
+echo ""
 
 fluka_installed=$(grep "version" $FLUPRO/Version.tag | awk -F":" '{print $2}' | awk '{print $1}')
 fluka_installed_short=$(echo  $fluka_installed |awk -F"." '{print $1 "." $2}')
@@ -29,5 +37,4 @@ fi
 
 echo ""
 echo "More information at www.fluka.org and https://github.com/flukadocker/F4D"
-
-cat /etc/profile.d/disclaimer
+echo ""
