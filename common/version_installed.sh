@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# set gnuplot default terminal to x11
+echo "set term x11" > /home/fluka/.gnuplot
+
 cat /etc/profile.d/disclaimer
 echo ""
 
