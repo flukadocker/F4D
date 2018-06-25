@@ -3,7 +3,7 @@
 # set gnuplot default terminal to x11
 echo "set term x11" > /home/fluka/.gnuplot
 
-t /etc/motd
+cat /etc/motd
 
 fluka_installed=$(grep "version" $FLUPRO/Version.tag | awk -F":" '{print $2}' | awk '{print $1}')
 flair_installed=$(dnf list installed flair | grep flair | awk '{print $2}')
