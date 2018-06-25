@@ -1,8 +1,5 @@
 #!/bin/bash
 
-echo ""
-echo "Fluka for Docker"
-echo ""
 cat /etc/profile.d/disclaimer
 echo ""
 
