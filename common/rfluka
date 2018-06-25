@@ -218,7 +218,7 @@ Usage: rfluka -e <fluka executable> -N <run N> -M <final run N>
     
     # create running sub-directory
     if [ -d ${DCKRD} ] ; then
-        rm -rf ${DCKRD}
+        \rm -rf ${DCKRD}
     fi
     mkdir -p ${DCKRD}
     ln -s ${DCKRD}
@@ -227,11 +227,14 @@ Usage: rfluka -e <fluka executable> -N <run N> -M <final run N>
     while [ ! -L ${CURSUB} ] ; do
         sleep 1
     done
+# switch to running sub-directory
+    cd $DCKRD
  else
     mkdir ${CURSUB}
- fi
 # switch to running sub-directory
- cd $CURSUB
+    cd $CURSUB
+ fi
+
  ${ECHOE} "\nRunning fluka in `pwd`"
 
 # copy input file to directory
