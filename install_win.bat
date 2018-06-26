@@ -9,8 +9,17 @@ docker cp ./common/version_current.sh fluka_info:/
 docker cp ./common/fluka fluka_info:/common/
 docker cp ./common/flukar fluka_info:/common/
 docker cp ./common/flair fluka_info:/common/
+docker cp ./common/version.tag fluka_info:/common/
 docker exec fluka_info chmod 755 /version_current.sh
 docker exec -it fluka_info /version_current.sh
+
+IF NOT %errorlevel% == 0 (
+    ECHO ERROR: Newer versions of the install and/or run scripts are available. Update them to continue.
+    docker stop fluka_info
+    docker rm fluka_info
+    EXIT /B 1
+)
+
 docker cp fluka_info:/common/update ./common/
 docker cp fluka_info:/common/fluka ./common/
 docker cp fluka_info:/common/flukar ./common/
@@ -28,7 +37,7 @@ SET /P update=< .\common\update
 docker build -f .\common\flair.dockerfile --build-arg flair_version=%flair_version% -t f4d_flair .
 
 IF NOT %errorlevel% == 0 (
-    ECHO ERROR: Failed to install flair. Check your internet connection and/or try again later.
+    ECHO ERROR: Failed to install flair. Check your internet connection and/or see the troubleshooting part of the user guide.
     FOR /F "tokens=*" %%a in ('docker ps -ql') do SET contid=%%a
     docker rm !contid!
     docker image prune -f
@@ -58,11 +67,11 @@ IF NOT EXIST %fluka_package% (
 )
 
 IF NOT EXIST %fluka_package% (
-    ECHO Error downloading Fluka package [%fluka_package%]
+    ECHO ERROR: Failed to download Fluka package [%fluka_package%]
     EXIT /B 1
 )
 
-docker build --no-cache -f .\common\fluka.dockerfile --build-arg fluka_package=%fluka_package% -t f4d_fluka .
+docker build --no-cache -f .\common\fluka.dockerfile --build-arg fluka_package=%fluka_package% --build-arg fluka_version=%fluka_version% -t f4d_fluka .
 
 IF NOT %errorlevel% == 0 (
     ECHO ERROR: Failed to install Fluka. See the troubleshooting part of the user guide.

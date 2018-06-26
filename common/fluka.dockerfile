@@ -1,6 +1,7 @@
 FROM f4d_flair
 
 ARG fluka_package
+ARG fluka_version
 
 COPY $fluka_package /tmp
 COPY ./common/motd /etc
@@ -11,6 +12,7 @@ COPY ./common/rfluka /tmp
 ENV FLUFOR=gfortran
 ENV FLUPRO=/usr/local/fluka
 ENV FLDCKR=1
+ENV FLUVER=$fluka_version
 
 ARG UID=1000
 

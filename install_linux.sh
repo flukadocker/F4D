@@ -9,8 +9,17 @@ docker cp ./common/version_current.sh fluka_info:/
 docker cp ./common/fluka fluka_info:/common/
 docker cp ./common/flukar fluka_info:/common/
 docker cp ./common/flair fluka_info:/common/
+docker cp ./common/version.tag fluka_info:/common/
 docker exec fluka_info chmod 755 /version_current.sh
 docker exec -it fluka_info /version_current.sh
+
+if [ ! $? -eq 0 ]; then
+    echo "ERROR: Newer versions of the install and/or run scripts are available. Update them to continue."
+    docker stop fluka_info
+    docker rm fluka_info
+    exit 1
+fi
+
 docker cp fluka_info:/common/update ./common/
 docker cp fluka_info:/common/fluka ./common/
 docker cp fluka_info:/common/flukar ./common/
@@ -28,8 +37,8 @@ update=$(< ./common/update)
 docker build -f ./common/flair.dockerfile --build-arg flair_version=$flair_version -t f4d_flair .
 
 if [ ! $? -eq 0 ]; then
-    echo "ERROR: Failed to install flair. Check your internet connection and/or see the troubleshooting part of the user guide.."
-    docker rm $('docker ps -ql')
+    echo "ERROR: Failed to install flair. Check your internet connection and/or see the troubleshooting part of the user guide."
+    docker rm $(docker ps -ql)
     docker image prune -f
     exit 1
 fi
@@ -58,15 +67,15 @@ if [ ! -e ${fluka_package} ]; then
 fi
 
 if [ ! -e ${fluka_package} ]; then
-  echo "Error downloading Fluka package [${fluka_package}]"
+  echo "ERROR: Failed to download Fluka package [${fluka_package}]"
   exit 1
 fi
 
-docker build --no-cache -f ./common/fluka.dockerfile --build-arg fluka_package=$fluka_package --build-arg UID=$UID -t f4d_fluka .
+docker build --no-cache -f ./common/fluka.dockerfile --build-arg fluka_package=$fluka_package --build-arg fluka_version=$fluka_version --build-arg UID=$UID -t f4d_fluka .
 
 if [ ! $? -eq 0 ]; then
     echo "ERROR: Failed to install Fluka. See the troubleshooting part of the user guide."
-    docker rm $('docker ps -ql')
+    docker rm $(docker ps -ql)
     docker image prune -f
     exit 1
 fi

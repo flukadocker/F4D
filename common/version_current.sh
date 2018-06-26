@@ -1,6 +1,21 @@
 #!/bin/bash
 
-echo "Checking Fluka and flair versions"
+echo "Checking Installer, Fluka and flair versions"
+
+installer_installed=$(cat ./common/version.tag)
+
+wget_return=$(wget -q https://github.com/flukadocker/F4D/raw/master/common/version.tag)
+if [ $? -eq 0 ]; then
+  installer_current=$(cat version.tag)
+  rm -rf version.tag
+else
+  echo "WARNING: Can't find current Installer version"
+  installer_current=$installer_installed
+fi
+
+if [ ! "${installer_installed}" == "${installer_current}" ]; then
+  exit 1
+fi
 
 fluka_installed=$(cat ./common/flukar)
 
