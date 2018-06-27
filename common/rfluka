@@ -393,8 +393,10 @@ XNLOANFIL="e6r1nds3.fyi jef2.fyi  jendl3.fyi"
  cd "${CURDIR}"
 # check if FLUKA DOCKER variable is set
  if [ -n "$FLDCKR" ] ; then
+    DKRNDM=$(mktemp tmp_XXXXXX)
+    \mv ${CURSUB} ${DKRNDM}
+    unlink ${DKRNDM}
     rmdir ${DCKRD}
-    \rm ${CURSUB}
  else
     rmdir ${CURSUB}
  fi
