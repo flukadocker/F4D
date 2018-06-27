@@ -248,7 +248,7 @@ Note: Depending on your Xserver configuration you might need to run:
 ```
 xhost +
 ```
- on the host OS to enable the running the X11 forwarding.
+on the host OS to enable the X11 forwarding.
 
 ### Windows 10 Pro, Enterprise, and Education
 
