@@ -12,6 +12,8 @@ You can install Docker in the host OS by following the instructions on the Docke
 
 Install Docker Community Edition: https://www.docker.com/community-edition
 
+> On OS X and Linux machines the use of the native official FLUKA release is highly encouraged.
+
 ## Windows 10 Home (and possibly older Windows versions)
 
 Install Docker Toolbox: https://docs.docker.com/toolbox/overview/
@@ -24,7 +26,7 @@ Install Public Domain Release version of Xming (http://www.straightrunning.com/X
 
 Allow Docker and Xming through the firewall.
 
-## Additional info for Linux
+## Post installation steps for Linux
 
 Once docker is installed you need to add your user to the docker group.   
 ```
@@ -32,6 +34,10 @@ sudo usermod -aG docker $USER
 ```
 
 In this way, all docker commands can be issued as $USER.
+
+## Post installation steps for OS X
+
+Install the latest XQuartz X server, and enable the ```Allow connections from network clients``` in the preferences.
 
 ## Testing Docker installation
 
