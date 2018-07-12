@@ -20,7 +20,6 @@ case "${unameout}" in
         dsply=$DISPLAY
         ;;
 esac
-echo ${machine}
 
 if [ ! -e ./${folder} ]; then
   echo "Creating working directory"
