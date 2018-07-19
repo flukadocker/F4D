@@ -2,7 +2,7 @@
 
 V. Boccone, A. Fontana, D. Horváth
 
-These scripts allow to install and run Fluka and Flair inside a Docker container in any OS where Docker can be installed. The idea is derived by the scripts developed and maintained by V. Boccone at https://github.com/drbokko/fedora_27-fluka
+These scripts allow to install and run Fluka and Flair inside a Docker container in any OS where Docker can be installed. The idea is derived by the scripts developed and maintained by V. Boccone at [https://github.com/drbokko/fedora_27-fluka](https://github.com/drbokko/fedora_27-fluka)
 
 # Creating your personal Fluka User ID
 
@@ -16,19 +16,19 @@ You can install Docker in the host OS by following the instructions on the Docke
 
 ## macOS, Linux, Windows 10 Pro, Enterprise, and Education
 
-Install Docker Community Edition: https://www.docker.com/community-edition
+Install Docker Community Edition: [https://www.docker.com/community-edition](https://www.docker.com/community-edition)
 
 > On macOS and Linux machines the use of the native official FLUKA release is highly encouraged.
 
 ## Windows 10 Home (and possibly older Windows versions)
 
-Install Docker Toolbox: https://docs.docker.com/toolbox/overview/
+Install Docker Toolbox: [https://docs.docker.com/toolbox/overview/](https://docs.docker.com/toolbox/overview/)
 
 Windows 10 Home does not enable Hyper-V, which is required for Docker Community Edition. Docker Toolbox provides a workaround. This is not optimal for performance, but it allows to run FLUKA also on Windows 10 Home.
 
 ## Post installation steps for both Windows 10 versions
 
-Install Public Domain Release version of Xming (http://www.straightrunning.com/XmingNotes/).
+Install Public Domain Release version of Xming: [http://www.straightrunning.com/XmingNotes/](http://www.straightrunning.com/XmingNotes/)
 
 Allow Docker and Xming through the firewall.
 
