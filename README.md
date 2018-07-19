@@ -4,7 +4,7 @@ V. Boccone, A. Fontana, D. Horváth
 
 These scripts allow to install and run Fluka and Flair inside a Docker container in any OS where Docker can be installed. The idea is derived by the scripts developed and maintained by V. Boccone at https://github.com/drbokko/fedora_27-fluka
 
-# Creating your personal Fluka User ID.
+# Creating your personal Fluka User ID
 
 In order to be able to download and use Fluka, you must register on the Fluka website [fluka.org](https://www.fluka.org/fluka.php?id=secured_intro). With the registration you will get your personal Fluka User ID (fuid-XXXX) and the corresponding password. Later, you will have to provide the Fluka User ID and password doring the installation.
 
