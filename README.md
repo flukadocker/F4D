@@ -1,18 +1,24 @@
-# F4D (Fluka for Docker)
+# Fluka for Docker
 
 V. Boccone, A. Fontana, D. Horváth
 
 These scripts allow to install and run Fluka and Flair inside a Docker container in any OS where Docker can be installed. The idea is derived by the scripts developed and maintained by V. Boccone at https://github.com/drbokko/fedora_27-fluka
 
+# Creating your personal Fluka User ID.
+
+In order to be able to download and use Fluka, you must register on the Fluka website [fluka.org](https://www.fluka.org/fluka.php?id=secured_intro). With the registration you will get your personal Fluka User ID (fuid-XXXX) and the corresponding password. Later, you will have to provide the Fluka User ID and password doring the installation.
+
+> If you already registered on the website, and have your Fluka User ID, you can skip this step.
+
 # Installing Docker
 
-You can install Docker in the host OS by following the instructions on the Docker website: these are available for the most common Linux flavours, Windows 10 (Home and Professional Editions) and MacOS.
+You can install Docker in the host OS by following the instructions on the Docker website: these are available for the most common Linux flavours, Windows 10 (Home and Professional Editions) and macOS.
 
-## OS X, Linux, Windows 10 Pro, Enterprise, and Education
+## macOS, Linux, Windows 10 Pro, Enterprise, and Education
 
 Install Docker Community Edition: https://www.docker.com/community-edition
 
-> On OS X and Linux machines the use of the native official FLUKA release is highly encouraged.
+> On macOS and Linux machines the use of the native official FLUKA release is highly encouraged.
 
 ## Windows 10 Home (and possibly older Windows versions)
 
@@ -35,7 +41,7 @@ sudo usermod -aG docker $USER
 
 In this way, all docker commands can be issued as $USER.
 
-## Post installation steps for OS X
+## Post installation steps for macOS
 
 Install the latest XQuartz X server, and enable the ```Allow connections from network clients``` in the preferences.
 
@@ -75,7 +81,7 @@ The scripts for the generation of a basic Fluka-compatible image are open source
 
 ### Download
 
-You can download the latest version of the scripts from the github repository:   
+You can download the latest version of the scripts from the links on the top of this page, or directly from the github repository:   
 [https://github.com/flukadocker/F4D/archive/master.zip](https://github.com/flukadocker/F4D/archive/master.zip)
 
 ### Git clone
@@ -88,7 +94,7 @@ In both cases the download directory is your choice.
 
 ## Making the docker directory
 
-### OS X, Linux
+### macOS, Linux
 
 The downloaded scripts can be placed anywhere in your home directory.
 
@@ -102,7 +108,7 @@ Create the specific folder ```C:\Users\docker``` and copy every folder and file 
 
 ## Running the installation script
 
-### OS X, Linux
+### macOS, Linux
 
 You can generate your personal Fluka image by running in a terminal the ```install_linux.sh``` script in the root of the repository.
 
@@ -118,7 +124,7 @@ Alternatively you can start the Docker Quickstart Terminal as Administrator and 
 
 ## The installation process
 
-Both install scripts will prompt for your Fluka credentials (fuid-xxxx and password), download the latest public Fluka release and install it in a Fedora based Docker container.
+Both install scripts will prompt for your Fluka credentials (fuid-XXXX and password), download the latest public Fluka release and install it in a Fedora based Docker container.
 
 The installation might require a bit of time - from 1 to 10 minutes - depending on the speed of your internet connection.
 
@@ -244,7 +250,7 @@ After editing the dockerfile, run the installation script again to create the im
 
 ## Creating a container
 
-### OS X, Linux
+### macOS, Linux
 
 It is possible to get a shell terminal to container and to pass trough the X11 connection along with some local folder.
 
