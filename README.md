@@ -81,8 +81,7 @@ The scripts for the generation of a basic Fluka-compatible image are open source
 
 ### Download
 
-You can download the latest version of the scripts from the links on the top of this page, or directly from the github repository:   
-[https://github.com/flukadocker/F4D/archive/master.zip](https://github.com/flukadocker/F4D/archive/master.zip)
+You can download the latest version of the scripts from the links on the top of this page, or directly from the github repository: [https://github.com/flukadocker/F4D/archive/master.zip](https://github.com/flukadocker/F4D/archive/master.zip)
 
 ### Git clone
 
