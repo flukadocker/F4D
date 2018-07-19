@@ -1,1 +1,4 @@
 theme: jekyll-theme-cayman
+title: Fluka for Docker
+description: Running Fluka on Windows (macOS, Linux) machines using Docker
+show_downloads: true
