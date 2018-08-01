@@ -119,7 +119,7 @@ Execute in a Windows prompt terminal or by double-clicking on it the script ```i
 
 ### Windows 10 Home (and possibly older Windows versions)
 
-Start as Administrator a Docker Quickstart Terminal and execute from the directory ```/c/Users/docker``` the script ```install_win10.bat```. This script will install the necessary start the Docker container with Fluka and Flair installed and ready to be used.
+Start as Administrator a Docker Quickstart Terminal and execute from the directory ```/c/Users/docker``` the script ```install_win.bat```. This script will install the necessary start the Docker container with Fluka and Flair installed and ready to be used.
 
 Alternatively you can start the Docker Quickstart Terminal as Administrator and execute the install script in a Windows prompt terminal also started as Administrator.
 
