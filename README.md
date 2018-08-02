@@ -265,7 +265,7 @@ on the host OS to enable the X11 forwarding.
 
 ### Windows 10 Pro, Enterprise, and Education
 
-Use XLaunch to start Xming without access control.
+Use XLaunch to start Xming selecting the ```No Access Control``` checkbox, while keeping the others as is.
 
 Change directory to where you have installed the Docker scripts (e.g. ```C:\docker```) and execute the script ```run_win10_professional.bat```: this script will start the Docker container with Fluka and Flair installed.
 
@@ -273,7 +273,7 @@ Allow sharing the ```C:\``` drive, if Docker asks.
 
 ### Windows 10 Home (and possibly older Windows versions)
 
-Use XLaunch to start Xming without access control.
+Use XLaunch to start Xming selecting the ```No Access Control``` checkbox, while keeping the others as is.
 
 Start as Administrator a Docker Quickstart Terminal and execute from the directory ```/c/Users/docker``` the script ```run_win10_home.bat```. This script will start the Docker container with Fluka and Flair installed and ready to be used.
 
