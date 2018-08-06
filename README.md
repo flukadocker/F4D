@@ -327,7 +327,7 @@ Use the ```exit``` command in the container's shell to stop it.
 
 * On windows 10 Professional, sometimes a temporary file (tmp_XXXXXX) is left after the FLUKA run, which cannot be removed either from the container or from Windows. This is a known issue, related to how symbolic links used in shared folders. These files automatically disappear when Docker CE stopped, or restarted.
 
-* Opening external files (e.g. spectrum data read by a source routine) with relative path doesn't work. Using absolute path (i.e. /docker_work/<folder>/<filename>) for opening the file works.
+* Opening external files (e.g. spectrum data read by a source routine) with relative path doesn't work. Using absolute path (i.e. /docker_work/folders/filename) for opening the file works.
 
 # Updating the Fluka docker image
 
