@@ -315,8 +315,6 @@ or also running Flair with the command ```flair```.
 
 Always work in the ```/docker_work``` directory. While the home folder ```~``` is saved between sessions, it is not shared with the host OS.
 
-> On windows 10 Professional, sometimes a temporary file (tmp_XXXXXX) is left after the FLUKA run, which cannot be removed either from the container or from Windows. This is a known issue, related to how symbolic links used in shared folders. These files automatically disappear when Docker CE stopped, or restarted.
-
 ### Limitation of parallel jobs
 
 On Windows by default Docker is configured to have limited CPU cores and memory available to the containers. Only run one simulation job at a time. Parallel jobs might cause errors or hang the container.
@@ -324,6 +322,12 @@ On Windows by default Docker is configured to have limited CPU cores and memory 
 ## Stopping a container
 
 Use the ```exit``` command in the container's shell to stop it.
+
+# Known issues
+
+* On windows 10 Professional, sometimes a temporary file (tmp_XXXXXX) is left after the FLUKA run, which cannot be removed either from the container or from Windows. This is a known issue, related to how symbolic links used in shared folders. These files automatically disappear when Docker CE stopped, or restarted.
+
+* Opening external files (e.g. spectrum data read by a source routine) with relative path doesn't work. Using absolute path (i.e. /docker_work/<folder>/<filename>) for opening the file works.
 
 # Updating the Fluka docker image
 
