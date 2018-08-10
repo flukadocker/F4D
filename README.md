@@ -329,7 +329,7 @@ Use the ```exit``` command in the container's shell to stop it.
 
 * Opening external files (e.g. spectrum data read by a source routine) with relative path doesn't work. Using absolute path (i.e. /docker_work/folders/filename) for opening the file works.
 
-* The `Editor` function of flair is not working. Any text editor on the native OS can be used to modify the input files, or the `emacs` custop package can be installed to make the `Editor` function work again.
+* The `Editor` function of flair is not working. Any text editor on the native OS can be used to modify the input files, or the `emacs` custom package can be installed to make the `Editor` function work again.
 
 * Files with spaces in their name not recognized correctly. Renaming these files will solve the problem. 
 
