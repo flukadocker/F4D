@@ -346,28 +346,3 @@ In case of an error during the update you can try the following troubleshooting 
 3. Delete the ```fluka*.tar.gz``` file in the scripts folder.
 
 3. Delete all in you Docker directory and redownload the latest scripts.
-
-# More information on Docker in general
-
-## Working with containers
-
-Working with containers might not be so easy if are not used to the Command Line Interface in Linux. [Digital Ocean provides a nice primer](https://www.digitalocean.com/community/tutorials/working-with-docker-containers)
-
-Each container instance is identified by an unique CONTAINER ID code and an unique name. If no name is specified during the container creation docker will generate a random name.
-
-If you are working in an interactive container you can terminate the shell by typing exit. If no ```--rm``` option was specified at the container instantiation the status container will not be lost and will be saved on the system.
-
-The list of the instantiated container (and their status) can be obtained by the following command:
-```
-docker ps -a
-```
-
-An *Exited* container can be restarted with:
-```
-docker start <CONTAINER ID> or <CONTAINER NAME>
-```
-
-An *Running* but detached container can be reattached by:
-```
-docker attach <CONTAINER ID> or <CONTAINER NAME>
-```
