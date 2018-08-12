@@ -345,4 +345,4 @@ In case of an error during the update you can try the following troubleshooting 
 
 3. Delete the ```fluka*.tar.gz``` file in the scripts folder.
 
-3. Delete all in you Docker directory and redownload the latest scripts.
+3. Except the `docker_work` directory, delete everthing from your Docker directory and redownload the latest scripts.
