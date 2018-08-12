@@ -36,5 +36,5 @@ if [ ! "${fluka_installed}" == "${fluka_current}" ]; then
 fi
 
 echo ""
-echo "More information at www.fluka.org and https://flukadocker.github.io/F4D/"
+echo "More information at www.fluka.org and flukadocker.github.io/F4D"
 echo ""
