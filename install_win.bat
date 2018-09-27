@@ -46,29 +46,34 @@ IF NOT %errorlevel% == 0 (
 
 docker image prune -f
 
-SET fluka_package=fluka%fluka_version_short%-linux-gfor64bitAA.tar.gz
+IF "%~1" == "" (
+    SET fluka_package=fluka!fluka_version_short!-linux-gfor64bitAA.tar.gz
 
-IF "%update%" == "1" (
-    IF EXIST %fluka_package% (
-        ECHO Deleting old Fluka package
-        DEL %fluka_package%
+    IF "!update!" == "1" (
+        IF EXIST !fluka_package! (
+            ECHO Deleting old Fluka package
+            DEL !fluka_package!
+        )
+        ECHO 0 > .\common\update
     )
-    ECHO 0 > .\common\update
-)
 
-IF NOT EXIST %fluka_package% (
-    ECHO Downloading Fluka
-    ECHO Please specify your Fluka user identification ['fuid', i.e. fuid-1234]
-    SET /P fuid="fuid: "
+    IF NOT EXIST !fluka_package! (
+        ECHO Downloading Fluka
+        ECHO Please specify your Fluka user identification ['fuid', i.e. fuid-1234]
+        SET /P fuid="fuid: "
 
-    docker run --name fluka_download -it f4d_flair wget --user=!fuid! --ask-password  https://www.fluka.org/packages/%fluka_package%
-    docker cp fluka_download:%fluka_package% .
-    docker rm fluka_download
-)
+        docker run --name fluka_download -it f4d_flair wget --user=!fuid! --ask-password  https://www.fluka.org/packages/!fluka_package!
+        docker cp fluka_download:!fluka_package! .
+        docker rm fluka_download
+    )
 
-IF NOT EXIST %fluka_package% (
-    ECHO ERROR: Failed to download Fluka package [%fluka_package%]
-    EXIT /B 1
+    IF NOT EXIST !fluka_package! (
+        ECHO ERROR: Failed to download Fluka package [!fluka_package!]
+        EXIT /B 1
+    )
+) ELSE (
+    ECHO Using custom package: %~1
+    SET fluka_package=%~1
 )
 
 docker build --no-cache -f .\common\fluka.dockerfile --build-arg fluka_package=%fluka_package% --build-arg fluka_version=%fluka_version% -t f4d_fluka .

@@ -45,30 +45,36 @@ fi
 
 docker image prune -f
 
-fluka_package=fluka$fluka_version_short-linux-gfor64bitAA.tar.gz
+if [ -z "$1" ]; then
+    fluka_package=fluka$fluka_version_short-linux-gfor64bitAA.tar.gz
 
-if [ "$update" == "1" ]; then
-    if [ -e ${fluka_package} ]; then
-        echo "Deleting old Fluka package"
-        rm -rf ${fluka_package}
+    if [ "$update" == "1" ]; then
+        if [ -e ${fluka_package} ]; then
+            echo "Deleting old Fluka package"
+            rm -rf ${fluka_package}
+        fi
+        echo "0" > ./common/update
     fi
-    echo "0" > ./common/update
-fi
 
-if [ ! -e ${fluka_package} ]; then
-   echo "Downloading Fluka"
-   echo "Please specify your Fluka user identification ['fuid', i.e. fuid-1234]"
-   echo -n "fuid: "
-   read fuid
+    if [ ! -e ${fluka_package} ]; then
+    echo "Downloading Fluka"
+    echo "Please specify your Fluka user identification ['fuid', i.e. fuid-1234]"
+    echo -n "fuid: "
+    read fuid
 
-   docker run --name fluka_download -it f4d_flair wget --user=$fuid --ask-password  https://www.fluka.org/packages/${fluka_package}
-   docker cp fluka_download:${fluka_package} .
-   docker rm fluka_download
-fi
+    docker run --name fluka_download -it f4d_flair wget --user=$fuid --ask-password  https://www.fluka.org/packages/${fluka_package}
+    docker cp fluka_download:${fluka_package} .
+    docker rm fluka_download
+    fi
 
-if [ ! -e ${fluka_package} ]; then
-  echo "ERROR: Failed to download Fluka package [${fluka_package}]"
-  exit 1
+    if [ ! -e ${fluka_package} ]; then
+    echo "ERROR: Failed to download Fluka package [${fluka_package}]"
+    exit 1
+    fi
+
+else
+    echo "Using custom package: ${1}"
+    fluka_package=$1
 fi
 
 docker build --no-cache -f ./common/fluka.dockerfile --build-arg fluka_package=$fluka_package --build-arg fluka_version=$fluka_version --build-arg UID=$UID -t f4d_fluka .
