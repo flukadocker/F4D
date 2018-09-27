@@ -72,8 +72,13 @@ IF "%~1" == "" (
         EXIT /B 1
     )
 ) ELSE (
-    ECHO Using custom package: %~1
+    ECHO Using custom package [%~1]
     SET fluka_package=%~1
+
+    IF NOT EXIST !fluka_package! (
+        ECHO ERROR: Custom package doesn't exists [!fluka_package!]
+        EXIT /B 1
+    )
 )
 
 docker build --no-cache -f .\common\fluka.dockerfile --build-arg fluka_package=%fluka_package% --build-arg fluka_version=%fluka_version% -t f4d_fluka .

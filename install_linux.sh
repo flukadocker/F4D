@@ -57,24 +57,29 @@ if [ -z "$1" ]; then
     fi
 
     if [ ! -e ${fluka_package} ]; then
-    echo "Downloading Fluka"
-    echo "Please specify your Fluka user identification ['fuid', i.e. fuid-1234]"
-    echo -n "fuid: "
-    read fuid
+        echo "Downloading Fluka"
+        echo "Please specify your Fluka user identification ['fuid', i.e. fuid-1234]"
+        echo -n "fuid: "
+        read fuid
 
-    docker run --name fluka_download -it f4d_flair wget --user=$fuid --ask-password  https://www.fluka.org/packages/${fluka_package}
-    docker cp fluka_download:${fluka_package} .
-    docker rm fluka_download
+        docker run --name fluka_download -it f4d_flair wget --user=$fuid --ask-password  https://www.fluka.org/packages/${fluka_package}
+        docker cp fluka_download:${fluka_package} .
+        docker rm fluka_download
     fi
 
     if [ ! -e ${fluka_package} ]; then
-    echo "ERROR: Failed to download Fluka package [${fluka_package}]"
-    exit 1
+        echo "ERROR: Failed to download Fluka package [${fluka_package}]"
+        exit 1
     fi
 
 else
-    echo "Using custom package: ${1}"
+    echo "Using custom package [${1}]"
     fluka_package=$1
+
+    if [ ! -e ${fluka_package} ]; then
+        echo "ERROR: Custom package doesn't exists [${fluka_package}]"
+        exit 1
+    fi
 fi
 
 docker build --no-cache -f ./common/fluka.dockerfile --build-arg fluka_package=$fluka_package --build-arg fluka_version=$fluka_version --build-arg UID=$UID -t f4d_fluka .
