@@ -20,7 +20,6 @@ IF NOT %errorlevel% == 0 (
     EXIT /B 1
 )
 
-docker cp fluka_info:/common/update ./common/
 docker cp fluka_info:/common/fluka ./common/
 docker cp fluka_info:/common/flukar ./common/
 docker cp fluka_info:/common/flair ./common/
@@ -31,8 +30,6 @@ SET /P fluka_version=< .\common\flukar
 SET /P fluka_version_short=< .\common\fluka
 
 SET /P flair_version=< .\common\flair
-
-SET /P update=< .\common\update
 
 docker build -f .\common\flair.dockerfile --build-arg flair_version=%flair_version% -t f4d_flair .
 
@@ -48,16 +45,14 @@ docker image prune -f
 
 IF "%~1" == "" (
     SET fluka_package=fluka!fluka_version_short!-linux-gfor64bitAA.tar.gz
+    SET fluka_package_respin=fluka!fluka_version!-linux-gfor64bitAA.tar.gz
 
-    IF "!update!" == "1" (
+    IF NOT EXIST !fluka_package_respin! (
         IF EXIST !fluka_package! (
             ECHO Deleting old Fluka package
             DEL !fluka_package!
         )
-        ECHO 0 > .\common\update
-    )
 
-    IF NOT EXIST !fluka_package! (
         ECHO Downloading Fluka
         ECHO Please specify your Fluka user identification ['fuid', i.e. fuid-1234]
         SET /P fuid="fuid: "
@@ -67,21 +62,25 @@ IF "%~1" == "" (
         docker rm fluka_download
     )
 
-    IF NOT EXIST !fluka_package! (
+    REN !fluka_package! !fluka_package_respin!
+
+    IF NOT EXIST !fluka_package_respin! (
         ECHO ERROR: Failed to download Fluka package [!fluka_package!]
         EXIT /B 1
     )
 ) ELSE (
     ECHO Using custom package [%~1]
-    SET fluka_package=%~1
+    SET fluka_package_respin=%~1
 
-    IF NOT EXIST !fluka_package! (
-        ECHO ERROR: Custom package doesn't exists [!fluka_package!]
+    IF NOT EXIST !fluka_package_respin! (
+        ECHO ERROR: Custom package doesn't exists [!fluka_package_respin!]
         EXIT /B 1
     )
+
+    SET fluka_version="Custom"
 )
 
-docker build --no-cache -f .\common\fluka.dockerfile --build-arg fluka_package=%fluka_package% --build-arg fluka_version=%fluka_version% -t f4d_fluka .
+docker build --no-cache -f .\common\fluka.dockerfile --build-arg fluka_package=%fluka_package_respin% --build-arg fluka_version=%fluka_version% -t f4d_fluka .
 
 IF NOT %errorlevel% == 0 (
     ECHO ERROR: Failed to install Fluka. See the troubleshooting part of the user guide.

@@ -28,12 +28,6 @@ else
   fluka_current=$fluka_installed
 fi
 
-if [ ! "${fluka_installed}" == "${fluka_current}" ]; then
-  echo "1" > ./common/update
-else
-  echo "0" > ./common/update
-fi
-
 fluka_current_short=$(echo  $fluka_current |awk -F"." '{print $1 "." $2}')
 
 echo $fluka_current > ./common/flukar

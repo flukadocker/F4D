@@ -325,7 +325,7 @@ XNLOANFIL="e6r1nds3.fyi jef2.fyi  jendl3.fyi"
     ln -s ${OUTF} ${FORT}${FORTD}11
     LOGF=${ROOF}${PST}.log
     ${ECHOE} "\n================================ Running FLUKA for cycle # $NUM ============================================="
-    ${EXE} < $INPN 2>$LOGF 1>$LOGF
+    ${EXE} 2>$LOGF 1>$LOGF
     RC=$?
     if [ ! $RC -eq 0 ] ; then exit $RC ; fi
 # remove the links we know we can remove

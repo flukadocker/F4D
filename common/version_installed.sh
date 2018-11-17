@@ -27,12 +27,14 @@ if [ ! -f /usr/local/fluka/flukahp ]; then
 fi
 
 if [ ! "${fluka_installed}" == "${fluka_current}" ]; then
-  echo ""
-  echo "WARNING:"
-  echo "    The installed version of Fluka is older than the latest"
-  echo "    released version. To update Fluka, please remove the"
-  echo "    fluka${fluka_installed_short}-linux-gfor64bitAA.tar.gz"
-  echo "    from your Docker folder and rerun the installation script."
+  if [ ! "${fluka_current}" == "Custom" ]; then
+    echo ""
+    echo "WARNING:"
+    echo "    The installed version of Fluka is not the latest"
+    echo "    released version. To update Fluka, please remove the"
+    echo "    fluka*.tar.gz files from your Docker folder and"
+    echo "    rerun the installation script."
+  fi
 fi
 
 echo ""
