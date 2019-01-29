@@ -12,7 +12,7 @@ case "${unameout}" in
         ;;
     # MacOS
     Darwin*)
-        dsply="docker.for.mac.localhost:0.0"
+        dsply="host.docker.internal:0.0"
         ;; 
     # Unknown default to Linux
     *)
