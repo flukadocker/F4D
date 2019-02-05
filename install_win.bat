@@ -60,9 +60,14 @@ IF "%~1" == "" (
         docker run --name fluka_download -it f4d_flair wget --user=!fuid! --ask-password  https://www.fluka.org/packages/!fluka_package!
         docker cp fluka_download:!fluka_package! .
         docker rm fluka_download
+
+        
     )
 
-    REN !fluka_package! !fluka_package_respin!
+    IF EXIST !fluka_package! (
+        ECHO Renaming Fluka package
+        REN !fluka_package! !fluka_package_respin!
+    )
 
     IF NOT EXIST !fluka_package_respin! (
         ECHO ERROR: Failed to download Fluka package [!fluka_package!]

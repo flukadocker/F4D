@@ -62,7 +62,10 @@ if [ -z "$1" ]; then
         docker rm fluka_download
     fi
 
-    mv ${fluka_package} ${fluka_package_respin}
+    if [ -e ${fluka_package} ]; then
+        echo "Renaming Fluka package"
+        mv ${fluka_package} ${fluka_package_respin}
+    fi
 
     if [ ! -e ${fluka_package_respin} ]; then
         echo "ERROR: Failed to download Fluka package [${fluka_package}]"
