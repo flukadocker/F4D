@@ -11,7 +11,6 @@ COPY ./common/rfluka /tmp
 
 ENV FLUFOR=gfortran
 ENV FLUPRO=/usr/local/fluka
-ENV FLDCKR=1
 ENV FLUVER=$fluka_version
 
 ARG UID=1000

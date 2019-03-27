@@ -211,9 +211,9 @@ Usage: rfluka -e <fluka executable> -N <run N> -M <final run N>
     fi
  fi
 
-# check if FLUKA DOCKER variable is set
- if [ -n "$FLDCKR" ] ; then
-    ${ECHOE} "\nUsing Docker specific settings"
+# check if WIN10PRO variable is set
+ if [ -n "$WIN10PRO" ] ; then
+    ${ECHOE} "\nUsing Windows 10 Pro workaround"
     DCKRD=${HOME}${FLUTMP}${CURDIR}/${CURSUB}
     
     # create running sub-directory
@@ -391,8 +391,8 @@ XNLOANFIL="e6r1nds3.fyi jef2.fyi  jendl3.fyi"
  fi
  \rm $INPN
  cd "${CURDIR}"
-# check if FLUKA DOCKER variable is set
- if [ -n "$FLDCKR" ] ; then
+# check if WIN10PRO variable is set
+ if [ -n "$WIN10PRO" ] ; then
     DKRNDM=$(mktemp tmp_XXXXXX)
     \mv ${CURSUB} ${DKRNDM}
     unlink ${DKRNDM}

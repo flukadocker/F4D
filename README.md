@@ -18,7 +18,7 @@ You can install Docker in the host OS by following the instructions on the Docke
 
 ## macOS, Linux, Windows 10 Pro, Enterprise, and Education
 
-Install Docker Community Edition: [https://www.docker.com/community-edition](https://www.docker.com/community-edition)
+Install Docker Community Edition: [https://hub.docker.com/search/?type=edition&offering=community](https://hub.docker.com/search/?type=edition&offering=community)
 
 > On macOS and Linux machines the use of the native official FLUKA release is highly encouraged.
 
@@ -327,7 +327,7 @@ Use the ```exit``` command in the container's shell to stop it.
 
 * On windows 10 Professional, sometimes a temporary file (tmp_XXXXXX) is left after the FLUKA run, which cannot be removed either from the container or from Windows. This is a known issue, related to how symbolic links used in shared folders. These files automatically disappear when Docker CE stopped, or restarted.
 
-* Opening external files (e.g. spectrum data read by a source routine) with relative path doesn't work. Using absolute path (i.e. /docker_work/folders/filename) for opening the file works.
+* On windows 10 Professional, opening external files (e.g. spectrum data read by a source routine) with relative path doesn't work. Using absolute path (i.e. /docker_work/folders/filename) for opening the file works.
 
 * The `Editor` function of flair is not working. Any text editor on the native OS can be used to modify the input files, or the `emacs` custom package can be installed to make the `Editor` function work again.
 

@@ -27,12 +27,12 @@ IF "%fluka_status%" == "true" (
     ECHO Fluka container already exists, restarting...
     ECHO.
     docker rm fluka
-    docker run -it --rm --name fluka --net=host -e DISPLAY=10.0.75.1:0.0 -v fluka_home:/home/fluka -v /%drv%/%pth%/%folder%:/%folder% f4d_fluka bash
+    docker run -it --rm --name fluka --net=host -e WIN10PRO=1 -e DISPLAY=10.0.75.1:0.0 -v fluka_home:/home/fluka -v /%drv%/%pth%/%folder%:/%folder% f4d_fluka bash
 ) ELSE (
     ECHO.
     ECHO Starting Fluka container...
     ECHO.
-    docker run -it --rm --name fluka --net=host -e DISPLAY=10.0.75.1:0.0 -v fluka_home:/home/fluka -v /%drv%/%pth%/%folder%:/%folder% f4d_fluka bash
+    docker run -it --rm --name fluka --net=host -e WIN10PRO=1 -e DISPLAY=10.0.75.1:0.0 -v fluka_home:/home/fluka -v /%drv%/%pth%/%folder%:/%folder% f4d_fluka bash
 )
 
 goto :EOF
