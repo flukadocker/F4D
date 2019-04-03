@@ -16,6 +16,7 @@ ENV FLUVER=$fluka_version
 ARG UID=1000
 
 RUN useradd -u $UID -c 'Fluka User' -m -d /home/fluka -s /bin/bash fluka && \
+    echo "root:fluka" | chpasswd && \
     mkdir -p /usr/local/fluka && \
     tar -zxf /tmp/fluka*.tar.gz -C /usr/local/fluka && \
     cd /usr/local/fluka; make && \
