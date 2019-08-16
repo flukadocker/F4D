@@ -331,7 +331,10 @@ Use the ```exit``` command in the container's shell to stop it.
 
 * The `Editor` function of flair is not working. Any text editor on the native OS can be used to modify the input files, or the `emacs` custom package can be installed to make the `Editor` function work again.
 
-* Files with spaces in their name not recognized correctly. Renaming these files will solve the problem. 
+* Files with spaces in their name not recognized correctly. Renaming these files will solve the problem.
+
+* File permission error on Windows 10 Home. Due to an incomplatibility issue between certain Docker Toolbox and VirtualBox, the shared docker_work folder is not mounted. Updating to the latest VirtualBox version should solve the issue.
+Download the ```Windows hosts``` version from [virtualbox.org](https://www.virtualbox.org).
 
 # Updating the Fluka docker image
 
