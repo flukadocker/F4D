@@ -2,9 +2,10 @@
 
 V. Boccone, A. Fontana, D. Horváth
 
-These scripts allow to install and run Fluka and Flair inside a Docker container in any OS where Docker can be installed. The idea is derived by the scripts developed and maintained by V. Boccone at [https://github.com/drbokko/fedora_27-fluka](https://github.com/drbokko/fedora_27-fluka).
+These scripts allow to install and run the Fluka2020 (provided by www.fluka.org) and Flair2 inside a Docker container in any OS where Docker can be installed. The idea is derived by the scripts developed and maintained by V. Boccone at [https://github.com/drbokko/fedora_27-fluka](https://github.com/drbokko/fedora_27-fluka).
 
 They are designed to be used only on single user machines, they are not suitable for multiple people working in parallel on a machine (i.e. clusters).
+This container solution does only support the www.fluka.org release which is not compatible with Flair3.
 
 # Creating your personal Fluka User ID
 
