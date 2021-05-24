@@ -45,6 +45,7 @@ docker image prune -f
 if [ -z "$1" ]; then
     fluka_package=fluka$fluka_version_short-linux-gfor64bitAA.tar.gz
     fluka_package_respin=fluka$fluka_version-linux-gfor64bitAA.tar.gz
+    fluka_data=fluka$fluka_version_short-data.tar.gz
 
     if [ ! -e ${fluka_package_respin} ]; then
         if [ -e ${fluka_package} ]; then
@@ -59,6 +60,18 @@ if [ -z "$1" ]; then
 
         docker run --name fluka_download -it f4d_flair wget --user=$fuid --ask-password  https://www.fluka.org/packages/${fluka_package}
         docker cp fluka_download:${fluka_package} .
+        docker rm fluka_download
+    fi
+
+    if [ ! -e ${fluka_data} ]; then
+        echo "Downloading Fluka data"
+        echo "Please specify your Fluka user identification ['fuid', i.e. fuid-1234]"
+        echo -n "fuid: "
+        read fuid
+
+
+        docker run --name fluka_download -it f4d_flair wget --user=$fuid --ask-password  https://www.fluka.org/packages/${fluka_data}
+        docker cp fluka_download:${fluka_data} .
         docker rm fluka_download
     fi
 
@@ -84,7 +97,7 @@ else
     fluka_version="Custom"
 fi
 
-docker build --no-cache -f ./common/fluka.dockerfile --build-arg fluka_package=$fluka_package_respin --build-arg fluka_version=$fluka_version --build-arg UID=$UID -t f4d_fluka .
+docker build --no-cache -f ./common/fluka.dockerfile --build-arg fluka_package=$fluka_package_respin --build-arg fluka_data=$fluka_data --build-arg fluka_version=$fluka_version --build-arg UID=$UID -t f4d_fluka .
 
 if [ ! $? -eq 0 ]; then
     echo "ERROR: Failed to install Fluka. See the troubleshooting part of the user guide."
