@@ -1,8 +1,26 @@
 #!/bin/bash
 
-docker pull flukadocker/f4d_baseimage
+#docker pull flukadocker/f4d_baseimage
 
-docker create --name fluka_info -t flukadocker/f4d_baseimage bash
+#docker create --name fluka_info -t flukadocker/f4d_baseimage bash
+
+if [ ! $(docker images -q f4d_base_ubuntu_focal) == "" ]
+then
+    echo "Docker image f4d_base_ubuntu_focal does not exist yet."
+    echo "In the future flukadocker/f4d_baseimage Docker image" 
+    echo "may be based on Ubuntu 20.04 LTS,"
+    echo "but for now please build Docker image with a Dockerfile at"
+    echo "github.com/vicha-w/F4D_baseimage"
+    echo "This Docker image will be built based on Ubuntu 20.04 LTS"
+    echo "instead of Fedora 30."
+    echo
+    echo "Use the following commands:"
+    echo "git clone https://github.com/vicha-w/F4D_baseimage.git"
+    echo "docker build -f F4D_baseimage/Dockerfile -t f4d_base_ubuntu_focal ."
+    exit 1
+fi
+
+docker create --name fluka_info -t f4d_base_ubuntu_focal
 docker start fluka_info
 docker exec fluka_info mkdir /common
 docker cp ./common/version_current.sh fluka_info:/
