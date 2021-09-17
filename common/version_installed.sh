@@ -13,7 +13,7 @@ echo ""
 fluka_installed=$(grep "version" $FLUPRO/Version.tag | awk -F":" '{print $2}' | awk '{print $1}')
 fluka_installed_short=$(echo  $fluka_installed |awk -F"." '{print $1 "." $2}')
 fluka_current=$(echo  $FLUVER)
-flair_installed=$(dnf list installed flair | grep flair | awk '{print $2}')
+flair_installed=$(apt list --installed flair | grep flair | awk '{print $2}')
 
 echo "Fluka version: $fluka_installed, flair version: $flair_installed"
 

@@ -218,7 +218,7 @@ Usage: rfluka -e <fluka executable> -N <run N> -M <final run N>
     
     # create running sub-directory
     if [ -d ${DCKRD} ] ; then
-        \rm -rf ${DCKRD}
+        rm -rf ${DCKRD}
     fi
     mkdir -p ${DCKRD}
     ln -s ${DCKRD}
@@ -336,7 +336,7 @@ XNLOANFIL="e6r1nds3.fyi jef2.fyi  jendl3.fyi"
     $DATAFILES neuxsc.bin $XNLOANFIL xnloan.dat
     do
        if [ -h $i ] ; then
-          \rm $i
+          rm $i
        elif [ -r $i ] ; then
           ${ECHOE} "\nSomething wrong, $i is a file and not a link!"
           exit 2
@@ -348,7 +348,7 @@ XNLOANFIL="e6r1nds3.fyi jef2.fyi  jendl3.fyi"
     ${FORT}${FORTD}${FORT0}8 ${FORT}${FORTD}16 geom.scr emf.scr .timer.out
     do
        if [ -f $i ] ; then
-          \rm $i
+          rm $i
        elif [ -h $i ] ; then
           ${ECHOE} "\nSomething wrong, $i is a link and not a file!"
           exit 2
@@ -360,7 +360,7 @@ XNLOANFIL="e6r1nds3.fyi jef2.fyi  jendl3.fyi"
     $OUTF $RAN2 $LOGF $ERRF
     do
        if [ -r "$i" ] ; then
-          \mv "$i" "$CURDIR"
+          mv "$i" "$CURDIR"
        else
           echo "     No $i generated!"
        fi
@@ -373,11 +373,11 @@ XNLOANFIL="e6r1nds3.fyi jef2.fyi  jendl3.fyi"
 # check for a possible user request to stop the run
           if [ "$i" = "rfluka.stop" ] ; then
              NUM=$MAX
-	     \rm "$i"
+	     rm "$i"
 # move all but the copy of the input file
 	  elif [ "$i" != "$INPN" ] ; then
              ${ECHOE} "\n     Moving $i to $CURDIR/${ROOF}${PST}_${i}"
-             \mv "$i" "$CURDIR/${ROOF}${PST}_${i}"
+             mv "$i" "$CURDIR/${ROOF}${PST}_${i}"
 	  fi
        done
     else
@@ -387,14 +387,14 @@ XNLOANFIL="e6r1nds3.fyi jef2.fyi  jendl3.fyi"
 # cleanup files and directory
 # remove .timer.out
  if [ -f .timer.out ] ; then
-     \rm .timer.out
+     rm .timer.out
  fi
- \rm $INPN
+ rm $INPN
  cd "${CURDIR}"
 # check if WIN10PRO variable is set
  if [ -n "$WIN10PRO" ] ; then
     DKRNDM=$(mktemp tmp_XXXXXX)
-    \mv ${CURSUB} ${DKRNDM}
+    mv ${CURSUB} ${DKRNDM}
     unlink ${DKRNDM}
     rmdir ${DCKRD}
  else
