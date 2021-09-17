@@ -1,10 +1,12 @@
 # Fluka for Docker
 
-V. Boccone, A. Fontana, D. Horváth
+Original scripts by V. Boccone, A. Fontana, D. Horváth
 
 These scripts allow to install and run Fluka (provided by www.fluka.org) and Flair2 inside a Docker container in any OS where Docker can be installed. The idea is derived by the scripts developed and maintained by V. Boccone at [https://github.com/drbokko/fedora_27-fluka](https://github.com/drbokko/fedora_27-fluka).
 
 They are designed to be used only on single user machines, they are not suitable for multiple people working in parallel on a machine (i.e. clusters).
+
+This version of Fluka for Docker is based on F4D Docker base image based on Ubuntu 20.04 LTS instead of Fedora 30. The base image on Docker Hub is still based on Fedora 30, so please refer to github.com/vicha-w/F4D_baseimage in order to build the base image.
 
 # Creating your personal Fluka User ID
 
@@ -83,13 +85,13 @@ The scripts for the generation of a basic Fluka-compatible image are open source
 
 ### Download
 
-You can download the latest version of the scripts from the links on the top of this page, or directly from the github repository: [https://github.com/flukadocker/F4D/archive/master.zip](https://github.com/flukadocker/F4D/archive/master.zip)
+You can download the latest version of the scripts from the links on the top of this page, or directly from the github repository: [https://github.com/vicha-w/F4D/archive/refs/heads/master.zip](https://github.com/vicha-w/F4D/archive/refs/heads/master.zip)
 
 ### Git clone
 
 You can alternatively checkout the full repository with the scripts from the github repository:   
 ```
-git clone https://github.com/flukadocker/F4D.git
+git clone https://github.com/vicha-w/F4D.git
 ```
 In both cases the download directory is your choice.
 
@@ -124,6 +126,8 @@ Start as Administrator a Docker Quickstart Terminal and execute from the directo
 Alternatively you can start the Docker Quickstart Terminal as Administrator and execute the install script in a Windows prompt terminal also started as Administrator.
 
 ## The installation process
+
+**Before installing with the instructions below, make sure that you have an Ubuntu-based F4D Docker image! If you haven't done so, you can build one by following instructions on [github.com/vicha-w/F4D_baseimage](https://github.com/vicha-w/F4D_baseimage)**
 
 Both install scripts will prompt for your Fluka credentials (fuid-XXXX and password), download the latest public Fluka release and install it in a Fedora based Docker container.
 
