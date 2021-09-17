@@ -3,8 +3,8 @@
 #docker pull flukadocker/f4d_baseimage
 
 #docker create --name fluka_info -t flukadocker/f4d_baseimage bash
-
-if [ ! $(docker images -q f4d_base_ubuntu_focal) == "" ]
+docker inspect f4d_base_ubuntu_focal > /dev/null 2>&1 && docker_image_404=false || docker_image_404=true
+if $docker_image_404
 then
     echo "Docker image f4d_base_ubuntu_focal does not exist yet."
     echo "In the future flukadocker/f4d_baseimage Docker image" 
@@ -44,10 +44,12 @@ docker cp fluka_info:/common/flair ./common/
 docker stop fluka_info
 docker rm fluka_info
 
-fluka_version=$(< ./common/flukar)
-fluka_version_short=$(< ./common/fluka)
+fluka_version=$(cat ./common/flukar)
+fluka_version_short=$(cat ./common/fluka)
 
-flair_version=$(< ./common/flair)
+flair_version=$(cat ./common/flair)
+
+echo "Will install FLUKA v${fluka_version_short}, FLAIR v${flair_version}"
 
 docker build -f ./common/flair.dockerfile --build-arg flair_version=$flair_version -t f4d_flair .
 

@@ -1,6 +1,21 @@
 @ECHO OFF & SETLOCAL ENABLEDELAYEDEXPANSION
 
-docker pull flukadocker/f4d_baseimage
+REM docker pull flukadocker/f4d_baseimage
+
+docker inspect f4d_base_ubuntu_focal
+IF NOT %errorlevel% == 0 (
+    ECHO Docker image f4d_base_ubuntu_focal does not exist yet.
+    ECHO In the future flukadocker/f4d_baseimage Docker image
+    ECHO may be based on Ubuntu 20.04 LTS,
+    ECHO but for now please build Docker image with a Dockerfile at
+    ECHO github.com/vicha-w/F4D_baseimage
+    ECHO This Docker image will be built based on Ubuntu 20.04 LTS
+    ECHO instead of Fedora 30.
+    ECHO Use the following commands:
+    ECHO git clone https://github.com/vicha-w/F4D_baseimage.git
+    ECHO docker build -f F4D_baseimage/Dockerfile -t f4d_base_ubuntu_focal .
+    EXIT /B 1
+)
 
 docker create --name fluka_info -t flukadocker/f4d_baseimage bash
 docker start fluka_info
