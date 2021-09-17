@@ -111,6 +111,8 @@ Create the specific folder ```C:\Users\docker``` and copy every folder and file 
 
 ## Running the installation script
 
+**Before installing with the instructions below, make sure that you have an Ubuntu-based F4D Docker image! If you haven't done so, you can build one by following instructions on [github.com/vicha-w/F4D_baseimage](https://github.com/vicha-w/F4D_baseimage)**
+
 ### macOS, Linux
 
 You can generate your personal Fluka image by running in a terminal the ```install_linux.sh``` script in the root of the repository.
@@ -126,8 +128,6 @@ Start as Administrator a Docker Quickstart Terminal and execute from the directo
 Alternatively you can start the Docker Quickstart Terminal as Administrator and execute the install script in a Windows prompt terminal also started as Administrator.
 
 ## The installation process
-
-**Before installing with the instructions below, make sure that you have an Ubuntu-based F4D Docker image! If you haven't done so, you can build one by following instructions on [github.com/vicha-w/F4D_baseimage](https://github.com/vicha-w/F4D_baseimage)**
 
 Both install scripts will prompt for your Fluka credentials (fuid-XXXX and password), download the latest public Fluka release and install it in a Fedora based Docker container.
 
