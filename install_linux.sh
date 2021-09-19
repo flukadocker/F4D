@@ -78,7 +78,7 @@ if [ -z "$1" ]; then
         echo -n "fuid: "
         read fuid
 
-        docker run --name fluka_download -it f4d_flair wget --user=$fuid --ask-password  https://www.fluka.org/packages/${fluka_package}
+        docker run --name fluka_download -it f4d_flair wget --user=$fuid --ask-password  https://www.fluka.org/packages/${fluka_package} --secure-protocol=TLSv1 --ciphers="DEFAULT@SECLEVEL=1"
         docker cp fluka_download:${fluka_package} .
         docker rm fluka_download
     fi
@@ -90,7 +90,7 @@ if [ -z "$1" ]; then
         read fuid
 
 
-        docker run --name fluka_download -it f4d_flair wget --user=$fuid --ask-password  https://www.fluka.org/packages/${fluka_data}
+        docker run --name fluka_download -it f4d_flair wget --user=$fuid --ask-password  https://www.fluka.org/packages/${fluka_data} --secure-protocol=TLSv1 --ciphers="DEFAULT@SECLEVEL=1"
         docker cp fluka_download:${fluka_data} .
         docker rm fluka_download
     fi
