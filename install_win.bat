@@ -46,6 +46,8 @@ SET /P fluka_version_short=< .\common\fluka
 
 SET /P flair_version=< .\common\flair
 
+ECHO Will install FLUKA v${fluka_version_short}, FLAIR v${flair_version}
+
 docker build -f .\common\flair.dockerfile --build-arg flair_version=%flair_version% -t f4d_flair .
 
 IF NOT %errorlevel% == 0 (
@@ -62,6 +64,11 @@ IF "%~1" == "" (
     SET fluka_package=fluka!fluka_version_short!-linux-gfor64bitAA.tar.gz
     SET fluka_data=fluka!fluka_version_short!-data.tar.gz
     SET fluka_package_respin=fluka!fluka_version!-linux-gfor64bitAA.tar.gz
+
+    ECHO Installing FLUKA into a container with the following variables:
+    ECHO fluka_package = !fluka_package!
+    ECHO fluka_data = !fluka_data!
+    ECHO fluka_package_respin = !fluka_package_respin!
 
     IF NOT EXIST !fluka_package_respin! (
         IF EXIST !fluka_package! (
@@ -82,7 +89,7 @@ IF "%~1" == "" (
 
     IF NOT EXIST !fluka_data! (
 
-        ECHO Downloading Fluka
+        ECHO Downloading Fluka data
         ECHO Please specify your Fluka user identification ['fuid', i.e. fuid-1234]
         SET /P fuid="fuid: "
 

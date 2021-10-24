@@ -67,6 +67,11 @@ if [ -z "$1" ]; then
     fluka_package_respin=fluka$fluka_version-linux-gfor64bitAA.tar.gz
     fluka_data=fluka$fluka_version_short-data.tar.gz
 
+    echo "Installing FLUKA into a container with the following variables:"
+    echo "fluka_package = " $fluka_package
+    echo "fluka_data = " $fluka_data
+    echo "fluka_package_respin = " $fluka_package_respin
+
     if [ ! -e ${fluka_package_respin} ]; then
         if [ -e ${fluka_package} ]; then
             echo "Deleting old Fluka package"
