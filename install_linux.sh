@@ -30,7 +30,7 @@ fluka_version=$(< ./common/flukar)
 fluka_version_short=$(< ./common/fluka)
 
 flair_version=$(< ./common/flair)
-
+flair_version=${flair_version}-glibc2.17
 docker build -f ./common/flair.dockerfile --build-arg flair_version=$flair_version -t f4d_flair .
 
 if [ ! $? -eq 0 ]; then
