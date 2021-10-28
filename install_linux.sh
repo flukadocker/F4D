@@ -20,7 +20,7 @@ then
     exit 1
 fi
 
-docker create --name fluka_info -t f4d_base_ubuntu_focal
+docker create --name fluka_info -t f4d_base_ubuntu_focal bash
 docker start fluka_info
 docker exec fluka_info mkdir /common
 docker cp ./common/version_current.sh fluka_info:/

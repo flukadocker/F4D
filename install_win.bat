@@ -17,7 +17,7 @@ IF NOT %errorlevel% == 0 (
     EXIT /B 1
 )
 
-docker create --name fluka_info -t flukadocker/f4d_baseimage bash
+docker create --name fluka_info -t f4d_base_ubuntu_focal bash
 docker start fluka_info
 docker exec fluka_info mkdir /common
 docker cp ./common/version_current.sh fluka_info:/
@@ -46,7 +46,7 @@ SET /P fluka_version_short=< .\common\fluka
 
 SET /P flair_version=< .\common\flair
 
-ECHO Will install FLUKA v${fluka_version_short}, FLAIR v${flair_version}
+ECHO Will install FLUKA v!fluka_version_short!, FLAIR v!flair_version!
 
 docker build -f .\common\flair.dockerfile --build-arg flair_version=%flair_version% -t f4d_flair .
 
