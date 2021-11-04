@@ -13,6 +13,11 @@ IF NOT EXIST %folder% (
     mkdir %folder%
 )
 
+ECHO %drv%
+ECHO %pth%
+ECHO %folder%
+ECHO /%drv%/%pth%/%folder%
+
 call :tolower drv
 
 FOR /F %%a in ('docker inspect -f {{.State.Running}} fluka 2^> nul') do SET fluka_status=%%a
