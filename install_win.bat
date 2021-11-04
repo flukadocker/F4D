@@ -48,7 +48,7 @@ SET /P flair_version=< .\common\flair
 
 ECHO Will install FLUKA v!fluka_version_short!, FLAIR v!flair_version!
 
-docker build -f .\common\flair.dockerfile --build-arg flair_version=%flair_version% -t f4d_flair .
+docker build --progress=plain -f .\common\flair.dockerfile --build-arg flair_version=%flair_version% -t f4d_flair .
 
 IF NOT %errorlevel% == 0 (
     ECHO ERROR: Failed to install flair. Check your internet connection and/or see the troubleshooting part of the user guide.
@@ -121,7 +121,7 @@ IF EXIST !fluka_package! (
     SET fluka_version="Custom"
 )
 
-docker build --no-cache -f .\common\fluka.dockerfile --build-arg fluka_package=%fluka_package_respin% --build-arg fluka_data=%fluka_data% --build-arg fluka_version=%fluka_version% -t f4d_fluka .
+docker build --no-cache -f .\common\fluka.dockerfile --progress=plain --build-arg fluka_package=%fluka_package_respin% --build-arg fluka_data=%fluka_data% --build-arg fluka_version=%fluka_version% -t f4d_fluka .
 
 IF NOT %errorlevel% == 0 (
     ECHO ERROR: Failed to install Fluka. See the troubleshooting part of the user guide.
