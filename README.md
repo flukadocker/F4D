@@ -16,19 +16,26 @@ In order to be able to download and use Fluka, you must register on the Fluka we
 
 # Installing Docker
 
-You can install Docker in the host OS by following the instructions on the Docker website: these are available for the most common Linux flavours, Windows 10 (Home and Professional Editions) and macOS.
+You can install Docker in the host OS by following the instructions on the Docker website: these are available for the most common Linux flavours, Windows 10, and macOS.
 
-## macOS, Linux, Windows 10 Pro, Enterprise, and Education
+## macOS
 
-Install Docker Community Edition: [https://hub.docker.com/search/?type=edition&offering=community](https://hub.docker.com/search/?type=edition&offering=community)
+Install Docker for Mac here: https://docs.docker.com/desktop/mac/install/
 
 > On macOS and Linux machines the use of the native official FLUKA release is highly encouraged.
 
-## Windows 10 Home (and possibly older Windows versions)
+## Linux
 
-Install Docker Toolbox: [https://docs.docker.com/toolbox/overview/](https://docs.docker.com/toolbox/overview/)
+Install Docker from your package manager (`apt`, `dnf`, or `pacman`). If you do not believe in Terminal, you will have to start using it now unfortunately.
 
-Windows 10 Home does not enable Hyper-V, which is required for Docker Community Edition. Docker Toolbox provides a workaround. This is not optimal for performance, but it allows to run FLUKA also on Windows 10 Home.
+On Ubuntu:
+```bash
+sudo apt install docker
+```
+
+## Windows 10 
+
+Install Docker for Windows here: https://docs.docker.com/desktop/windows/install/
 
 ## Post installation steps for both Windows 10 versions
 
@@ -39,7 +46,7 @@ Allow Docker and Xming through the firewall.
 ## Post installation steps for Linux
 
 Once docker is installed you need to add your user to the docker group.   
-```
+```bash
 sudo usermod -aG docker $USER
 ```
 
@@ -89,47 +96,41 @@ You can download the latest version of the scripts from the links on the top of 
 
 ### Git clone
 
-You can alternatively checkout the full repository with the scripts from the github repository:   
-```
+You can alternatively checkout the full repository with the scripts from the github repository:
+```bash
 git clone https://github.com/vicha-w/F4D.git
 ```
 In both cases the download directory is your choice.
 
 ## Making the docker directory
 
-### macOS, Linux
+### macOS, Linux, and Windows 10
 
-The downloaded scripts can be placed anywhere in your home directory.
-
-### Windows 10 Pro, Enterprise, and Education
-
-Create a folder on the ```C:\``` drive (e.g. ```C:\docker```) and copy every folder and file from the zip file (repository) there.
-
-### Windows 10 Home (and possibly older Windows versions)
-
-Create the specific folder ```C:\Users\docker``` and copy every folder and file from the zip file (repository) there.
+The downloaded scripts can be placed anywhere in your home directory. On Windows, you need to put the downloaded scripts in a directory where you have write access. A good choice is your own user directory `C:\Users\<YOUR USER NAME>`.
 
 ## Running the installation script
 
 **Before installing with the instructions below, make sure that you have an Ubuntu-based F4D Docker image! If you haven't done so, you can build one by following instructions on [github.com/vicha-w/F4D_baseimage](https://github.com/vicha-w/F4D_baseimage)**
 
+You can check for Ubuntu-based F4D Docker image, you can check it via Docker Desktop app or with Terminal or Command Prompt with the following command:
+
+```bash
+docker images
+```
+
 ### macOS, Linux
 
 You can generate your personal Fluka image by running in a terminal the ```install_linux.sh``` script in the root of the repository.
 
-### Windows 10 Pro, Enterprise, and Education
+### Windows 10
 
 Execute in a Windows prompt terminal or by double-clicking on it the script ```install_win.bat```.
-
-### Windows 10 Home (and possibly older Windows versions)
-
-Start as Administrator a Docker Quickstart Terminal and execute from the directory ```/c/Users/docker``` the script ```install_win.bat```. This script will install the necessary start the Docker container with Fluka and Flair installed and ready to be used.
-
-Alternatively you can start the Docker Quickstart Terminal as Administrator and execute the install script in a Windows prompt terminal also started as Administrator.
 
 ## The installation process
 
 Both install scripts will prompt for your Fluka credentials (fuid-XXXX and password), download the latest public Fluka release and install it in a Fedora based Docker container.
+
+If you are not familiar with UNIX-like password prompt on Terminal, you might notice that there are no characters appearing on the screen when you type in your password. This is a typical behaviour in UNIX-like shell.
 
 The installation might require a bit of time - from 1 to 10 minutes - depending on the speed of your internet connection.
 
@@ -247,7 +248,7 @@ During this phase the script will:
 
 ## Custom packages
 
-It is possible to install additional fedora packages. Uncomment and edit the appropriate lines in ```./common/flair.dockerfile```. Multiple packages can be listed, the package names should be separated with ```SPACE```.
+It is possible to install additional Ubuntu packages. Uncomment and edit the appropriate lines in ```./common/flair.dockerfile```. Multiple packages can be listed, the package names should be separated with ```SPACE```.
 
 After editing the dockerfile, run the installation script again to create the image with the custom packages.
 
@@ -267,27 +268,19 @@ xhost +
 ```
 on the host OS to enable the X11 forwarding.
 
-### Windows 10 Pro, Enterprise, and Education
+### Windows 10
 
-Use XLaunch to start Xming selecting the ```No Access Control``` checkbox, while keeping the others as is.
+Use XLaunch to start Xming selecting the "No Access Control" checkbox, while keeping the others as is.
 
-Change directory to where you have installed the Docker scripts (e.g. ```C:\docker```) and execute the script ```run_win10_professional.bat```: this script will start the Docker container with Fluka and Flair installed.
+Change directory to where you have installed the Docker scripts (e.g. ```C:\Users\<YOUR USER NAME>```) and execute the script ```run_win10_professional.bat```: this script will start the Docker container with Fluka and Flair installed.
 
 Allow sharing the ```C:\``` drive, if Docker asks.
-
-### Windows 10 Home (and possibly older Windows versions)
-
-Use XLaunch to start Xming selecting the ```No Access Control``` checkbox, while keeping the others as is.
-
-Start as Administrator a Docker Quickstart Terminal and execute from the directory ```/c/Users/docker``` the script ```run_win10_home.bat```. This script will start the Docker container with Fluka and Flair installed and ready to be used.
-
-Alternatively you can execute it in a Windows prompt terminal (started as Administrator).
 
 ## Using a container
 
 Once in the docker container shell you could use the shell as if you would on a normal linux system.
 
-The container automatically starts in the ```/docker_work``` folder. This folder is shared folder between the host OS and the Docker container. On the host OS it's located in the user-defined directory (e.g. ```C:\docker``` or ```C:\Users\docker```) as a subfolder.
+The container automatically starts in the ```/docker_work``` folder. This folder is shared folder between the host OS and the Docker container. On the host OS it's located in the user-defined directory (e.g. `C:\Users\<YOUR USER NAME>`) as a subfolder.
 
 You can try, for example, to run Fluka by:
 ```
@@ -325,20 +318,7 @@ On Windows by default Docker is configured to have limited CPU cores and memory 
 
 ## Stopping a container
 
-Use the ```exit``` command in the container's shell to stop it.
-
-# Known issues
-
-* On windows 10 Professional, sometimes a temporary file (tmp_XXXXXX) is left after the FLUKA run, which cannot be removed either from the container or from Windows. This is a known issue, related to how symbolic links used in shared folders. These files automatically disappear when Docker CE stopped, or restarted.
-
-* On windows 10 Professional, opening external files (e.g. spectrum data read by a source routine) with relative path doesn't work. Using absolute path (i.e. /docker_work/folders/filename) for opening the file works.
-
-* The `Editor` function of flair is not working. Any text editor on the native OS can be used to modify the input files, or the `emacs` custom package can be installed to make the `Editor` function work again.
-
-* Files with spaces in their name not recognized correctly. Renaming these files will solve the problem.
-
-* File permission error on Windows 10 Home. Due to an incomplatibility issue between certain Docker Toolbox and VirtualBox versions, the shared docker_work folder is not mounted. Updating to the latest VirtualBox version should solve the issue.
-Download the ```Windows hosts``` version from [virtualbox.org](https://www.virtualbox.org).
+Use the ```exit``` command in the container's shell to stop it. Upon exiting from the container shell, Docker will take care of stopping the container automatically.
 
 # Updating the Fluka docker image
 
