@@ -48,6 +48,7 @@ fluka_version=$(cat ./common/flukar)
 fluka_version_short=$(cat ./common/fluka)
 
 flair_version=$(cat ./common/flair)
+flair_version=${flair_version}-glibc2.17
 
 echo "Will install FLUKA v${fluka_version_short}, FLAIR v${flair_version}"
 
