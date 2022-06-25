@@ -101,21 +101,18 @@ The downloaded scripts can be placed anywhere in your home directory. On Windows
 
 ## Running the installation script
 
-**Before installing with the instructions below, make sure that you have an Ubuntu-based F4D Docker image! If you haven't done so, you can build one by following instructions on [github.com/vicha-w/F4D_baseimage](https://github.com/vicha-w/F4D_baseimage)**
+> **Before installing with the instructions below, make sure that you have an Ubuntu-based F4D Docker image! If you haven't done so, you can build one by following instructions on [github.com/vicha-w/F4D_baseimage](https://github.com/vicha-w/F4D_baseimage)**
 
-You can check for Ubuntu-based F4D Docker image, you can check it via Docker Desktop app or with Terminal or Command Prompt with the following command:
+You can check for Ubuntu-based F4D Docker image via Docker Desktop app or with Terminal or Command Prompt with the following command:
 
 ```bash
 docker images
 ```
 
-### macOS, Linux
+This repository contains two install scripts: `install_linux.sh` and `install_win.bat`. Both scripts will generate your personal Fluka image.
 
-You can generate your personal Fluka image by running in a terminal the ```install_linux.sh``` script in the root of the repository.
-
-### Windows 10
-
-Execute ```install_win.bat``` in a Windows command prompt.
+- macOS, Linux: execute `install_linux.sh` in Terminal.
+- Windows 10: execute `install_win.bat` in Command Prompt.
 
 ## The installation process
 
@@ -252,11 +249,8 @@ After editing the dockerfile, run the installation script again to create the im
 It is possible to get a shell terminal to container and to pass trough the X11 connection along with some local folder.
 
 - Execute from a terminal ```./run_linux.sh```: this script will start the Docker container with Fluka and Flair installed.
-- Note: Depending on your Xserver configuration you might need to run:
-  ```
-  xhost +
-  ```
-  on the host OS to enable the X11 forwarding.
+
+  > Note: Depending on your Xserver configuration you might need to run `xhost +` on the host OS to enable the X11 forwarding.
 
 ### Windows 10
 
