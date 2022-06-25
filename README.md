@@ -20,41 +20,32 @@ You can install Docker in the host OS by following the instructions on the Docke
 
 ## macOS
 
-Install Docker for Mac here: https://docs.docker.com/desktop/mac/install/
+- Install Docker for Mac here: https://docs.docker.com/desktop/mac/install/
 
-> On macOS and Linux machines the use of the native official FLUKA release is highly encouraged.
+  > On macOS and Linux machines the use of the native official FLUKA release is highly encouraged.
+
+- Install the latest XQuartz X server, and enable the ```Allow connections from network clients``` in the preferences.
 
 ## Linux
 
-Install Docker from your package manager (`apt`, `dnf`, or `pacman`). If you do not believe in Terminal, you will have to start using it now unfortunately.
-
-On Ubuntu:
-```bash
-sudo apt install docker
-```
+- Install Docker from your package manager (`apt`, `dnf`, or `pacman`). If you do not believe in Terminal, you will have to start using it now unfortunately.
+  
+  On Ubuntu:
+  ```bash
+  sudo apt install docker
+  ```
+- Once docker is installed, you need to add your user to the docker group.   
+  ```bash
+  sudo usermod -aG docker $USER
+  ```
+  In this way, all docker commands can be issued as $USER.
 
 ## Windows 10 
 
-Install Docker for Windows here: https://docs.docker.com/desktop/windows/install/
+- Install Docker for Windows here: https://docs.docker.com/desktop/windows/install/
+- Install Public Domain Release version of Xming: [http://www.straightrunning.com/XmingNotes/](http://www.straightrunning.com/XmingNotes/)
+- Allow Docker and Xming through the firewall.
 
-## Post installation steps for both Windows 10 versions
-
-Install Public Domain Release version of Xming: [http://www.straightrunning.com/XmingNotes/](http://www.straightrunning.com/XmingNotes/)
-
-Allow Docker and Xming through the firewall.
-
-## Post installation steps for Linux
-
-Once docker is installed you need to add your user to the docker group.   
-```bash
-sudo usermod -aG docker $USER
-```
-
-In this way, all docker commands can be issued as $USER.
-
-## Post installation steps for macOS
-
-Install the latest XQuartz X server, and enable the ```Allow connections from network clients``` in the preferences.
 
 ## Testing Docker installation
 
@@ -94,13 +85,13 @@ The scripts for the generation of a basic Fluka-compatible image are open source
 
 You can download the latest version of the scripts from the links on the top of this page, or directly from the github repository: [https://github.com/vicha-w/F4D/archive/refs/heads/master.zip](https://github.com/vicha-w/F4D/archive/refs/heads/master.zip)
 
-### Git clone
+### Git clone (recommended)
 
 You can alternatively checkout the full repository with the scripts from the github repository:
 ```bash
 git clone https://github.com/vicha-w/F4D.git
 ```
-In both cases the download directory is your choice.
+In both cases the download directory is your choice. This method allows you to update the installation code once it is updated here, by simply pulling from this repository. To pull the latest changes using git, go to the same directory and simply run `git pull`.
 
 ## Making the docker directory
 
@@ -124,7 +115,7 @@ You can generate your personal Fluka image by running in a terminal the ```insta
 
 ### Windows 10
 
-Execute in a Windows prompt terminal or by double-clicking on it the script ```install_win.bat```.
+Execute ```install_win.bat``` in a Windows command prompt.
 
 ## The installation process
 
@@ -260,21 +251,18 @@ After editing the dockerfile, run the installation script again to create the im
 
 It is possible to get a shell terminal to container and to pass trough the X11 connection along with some local folder.
 
-Execute from a terminal ```./run_linux.sh```: this script will start the Docker container with Fluka and Flair installed.
-
-Note: Depending on your Xserver configuration you might need to run:
-```
-xhost +
-```
-on the host OS to enable the X11 forwarding.
+- Execute from a terminal ```./run_linux.sh```: this script will start the Docker container with Fluka and Flair installed.
+- Note: Depending on your Xserver configuration you might need to run:
+  ```
+  xhost +
+  ```
+  on the host OS to enable the X11 forwarding.
 
 ### Windows 10
 
-Use XLaunch to start Xming selecting the "No Access Control" checkbox, while keeping the others as is.
-
-Change directory to where you have installed the Docker scripts (e.g. ```C:\Users\<YOUR USER NAME>```) and execute the script ```run_win10_professional.bat```: this script will start the Docker container with Fluka and Flair installed.
-
-Allow sharing the ```C:\``` drive, if Docker asks.
+- Use XLaunch to start Xming selecting the "No Access Control" checkbox, while keeping the others as is.
+- Change directory to where you have installed the Docker scripts (e.g. ```C:\Users\<YOUR USER NAME>```) and execute the script ```run_win10_professional.bat```: this script will start the Docker container with Fluka and Flair installed.
+- Allow sharing the ```C:\``` drive, if Docker asks.
 
 ## Using a container
 
