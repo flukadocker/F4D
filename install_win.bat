@@ -45,7 +45,6 @@ SET /P fluka_version=< .\common\flukar
 SET /P fluka_version_short=< .\common\fluka
 
 SET /P flair_version=< .\common\flair
-SET /P flair_version=%flair_version%-glibc2.17
 
 ECHO Will install FLUKA v!fluka_version_short!, FLAIR v!flair_version!
 
