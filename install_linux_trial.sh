@@ -43,8 +43,8 @@ fi
 docker image prune -f
 
 if [ -z "$1" ]; then
-    fluka_package=fluka$fluka_version_short-linux-gfor64bitAA.tar.gz
-    fluka_package_respin=fluka$fluka_version-linux-gfor64bitAA.tar.gz
+    fluka_package=fluka$fluka_version_short-linux-gfor64bitTrial.tar.gz
+    fluka_package_respin=fluka$fluka_version-linux-gfor64bitTrial.tar.gz
     fluka_data=fluka$fluka_version_short-data.tar.gz
 
     if [ ! -e ${fluka_package_respin} ]; then
@@ -58,7 +58,7 @@ if [ -z "$1" ]; then
         echo -n "fuid: "
         read fuid
 
-        docker run --name fluka_download -it f4d_flair wget --user=$fuid --ask-password  https://www.fluka.org/packages/${fluka_package}
+        docker run --name fluka_download -it f4d_flair wget --user=$fuid --ask-password  https://www.fluka.org/trial/${fluka_package}
         docker cp fluka_download:${fluka_package} .
         docker rm fluka_download
     fi
@@ -70,7 +70,7 @@ if [ -z "$1" ]; then
         read fuid
 
 
-        docker run --name fluka_download -it f4d_flair wget --user=$fuid --ask-password  https://www.fluka.org/packages/${fluka_data}
+        docker run --name fluka_download -it f4d_flair wget --user=$fuid --ask-password  https://www.fluka.org/trial/${fluka_data}
         docker cp fluka_download:${fluka_data} .
         docker rm fluka_download
     fi

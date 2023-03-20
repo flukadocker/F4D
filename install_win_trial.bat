@@ -45,9 +45,9 @@ IF NOT %errorlevel% == 0 (
 docker image prune -f
 
 IF "%~1" == "" (
-    SET fluka_package=fluka!fluka_version_short!-linux-gfor64bitAA.tar.gz
+    SET fluka_package=fluka!fluka_version_short!-linux-gfor64bitTrial.tar.gz
     SET fluka_data=fluka!fluka_version_short!-data.tar.gz
-    SET fluka_package_respin=fluka!fluka_version!-linux-gfor64bitAA.tar.gz
+    SET fluka_package_respin=fluka!fluka_version!-linux-gfor64bitTrial.tar.gz
 
     IF NOT EXIST !fluka_package_respin! (
         IF EXIST !fluka_package! (
@@ -59,7 +59,7 @@ IF "%~1" == "" (
         ECHO Please specify your Fluka user identification ['fuid', i.e. fuid-1234]
         SET /P fuid="fuid: "
 
-        docker run --name fluka_download -it f4d_flair wget --user=!fuid! --ask-password  https://www.fluka.org/packages/!fluka_package!
+        docker run --name fluka_download -it f4d_flair wget --user=!fuid! --ask-password  https://www.fluka.org/trial/!fluka_package!
         docker cp fluka_download:!fluka_package! .
         docker rm fluka_download
 
@@ -72,7 +72,7 @@ IF "%~1" == "" (
         ECHO Please specify your Fluka user identification ['fuid', i.e. fuid-1234]
         SET /P fuid="fuid: "
 
-        docker run --name fluka_download -it f4d_flair wget --user=!fuid! --ask-password  https://www.fluka.org/packages/!fluka_data!
+        docker run --name fluka_download -it f4d_flair wget --user=!fuid! --ask-password  https://www.fluka.org/trial/!fluka_data!
         docker cp fluka_download:!fluka_data! .
         docker rm fluka_download
 

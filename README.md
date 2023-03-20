@@ -113,9 +113,18 @@ Create the specific folder ```C:\Users\docker``` and copy every folder and file 
 
 You can generate your personal Fluka image by running in a terminal the ```install_linux.sh``` script in the root of the repository.
 
+Trial users: 
+
+You can generate your personal Fluka image by running in a terminal the ```install_linux_trial.sh``` script in the root of the repository.
+
 ### Windows 10 Pro, Enterprise, and Education
 
 Execute in a Windows prompt terminal or by double-clicking on it the script ```install_win.bat```.
+
+Trial users: 
+
+Execute in a Windows prompt terminal or by double-clicking on it the script ```install_win_trial.bat```.
+
 
 ### Windows 10 Home (and possibly older Windows versions)
 
