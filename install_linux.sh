@@ -43,8 +43,8 @@ fi
 docker image prune -f
 
 if [ -z "$1" ]; then
-    fluka_package=fluka$fluka_version_short-linux-gfor64bitAA.tar.gz
-    fluka_package_respin=fluka$fluka_version-linux-gfor64bitAA.tar.gz
+    fluka_package=fluka$fluka_version_short-docker.tar.gz
+    fluka_package_respin=fluka$fluka_version-docker.tar.gz
     fluka_data=fluka$fluka_version_short-data.tar.gz
 
     if [ ! -e ${fluka_package_respin} ]; then
