@@ -45,9 +45,9 @@ IF NOT %errorlevel% == 0 (
 docker image prune -f
 
 IF "%~1" == "" (
-    SET fluka_package=fluka!fluka_version_short!-linux-gfor64bitAA.tar.gz
+    SET fluka_package=fluka!fluka_version_short!-docker.tar.gz
     SET fluka_data=fluka!fluka_version_short!-data.tar.gz
-    SET fluka_package_respin=fluka!fluka_version!-linux-gfor64bitAA.tar.gz
+    SET fluka_package_respin=fluka!fluka_version!-docker.tar.gz
 
     IF NOT EXIST !fluka_package_respin! (
         IF EXIST !fluka_package! (
