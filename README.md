@@ -157,7 +157,7 @@ Step 1/3 : FROM flukadocker/f4d_baseimage
 Step 2/3 : ARG flair_version
  ---> Using cache
  ---> b012fd72139d
-Step 3/3 : RUN rpm -ivh http://www.fluka.org/flair/flair-$flair_version.noarch.rpm              http://www.fluka.org/flair/flair-geoviewer-$flair_version.x86_64.rpm
+Step 3/3 : RUN rpm -ivh http://www.fluka.eu/flair/flair-$flair_version.noarch.rpm              http://www.fluka.eu/flair/flair-geoviewer-$flair_version.x86_64.rpm
  ---> Using cache
  ---> 93b6e62b0919
 Successfully built 93b6e62b0919
@@ -168,12 +168,12 @@ Downloading Fluka
 Please specify your Fluka user identification ['fuid', i.e. fuid-1234]
 fuid: fuid-1234
 Password for user 'fuid-1234':
---2018-05-29 12:46:36--  https://www.fluka.org/packages/fluka2011.2x-linux-gfor64bitAA.tar.gz
-Resolving www.fluka.org (www.fluka.org)... 193.205.78.76
-Connecting to www.fluka.org (www.fluka.org)|193.205.78.76|:443... connected.
+--2018-05-29 12:46:36--  https://www.fluka.eu/Fluka/www/html/packages/fluka2011.2x-linux-gfor64bitAA.tar.gz
+Resolving www.fluka.eu (www.fluka.eu)... 193.205.78.76
+Connecting to www.fluka.eu (www.fluka.eu)|193.205.78.76|:443... connected.
 HTTP request sent, awaiting response... 401 Authorization Required
 Authentication selected: Basic realm="FLUKA download interface"
-Connecting to www.fluka.org (www.fluka.org)|193.205.78.76|:443... connected.
+Connecting to www.fluka.eu (www.fluka.eu)|193.205.78.76|:443... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 163830357 (156M) [application/x-gzip]
 Saving to: 'fluka2011.2x-linux-gfor64bitAA.tar.gz'
@@ -353,7 +353,7 @@ If a new version of Fluka or Flair released, you can update your Fluka docker im
 
 In case of an error during the update you can try the following troubleshooting steps:
 
-1. Check your internet connection, and see if [fluka.org](http://fluka.org) can be loaded.
+1. Check your internet connection, and see if [fluka.eu](http://www.fluka.eu) can be loaded.
 
 3. Delete the ```fluka*.tar.gz``` file in the scripts folder.
 

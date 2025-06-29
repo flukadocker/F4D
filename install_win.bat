@@ -59,7 +59,7 @@ IF "%~1" == "" (
         ECHO Please specify your Fluka user identification ['fuid', i.e. fuid-1234]
         SET /P fuid="fuid: "
 
-        docker run --name fluka_download -it f4d_flair wget --user=!fuid! --ask-password  https://www.fluka.org/packages/!fluka_package!
+        docker run --name fluka_download -it f4d_flair wget --user=!fuid! --ask-password  https://www.fluka.eu/Fluka/www/htmls/packages/!fluka_package!
         docker cp fluka_download:!fluka_package! .
         docker rm fluka_download
 
@@ -72,7 +72,7 @@ IF "%~1" == "" (
         ECHO Please specify your Fluka user identification ['fuid', i.e. fuid-1234]
         SET /P fuid="fuid: "
 
-        docker run --name fluka_download -it f4d_flair wget --user=!fuid! --ask-password  https://www.fluka.org/packages/!fluka_data!
+        docker run --name fluka_download -it f4d_flair wget --user=!fuid! --ask-password  https://www.fluka.eu/Fluka/www/htmls/packages/!fluka_data!
         docker cp fluka_download:!fluka_data! .
         docker rm fluka_download
 
